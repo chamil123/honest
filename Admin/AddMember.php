@@ -2,7 +2,9 @@
 if (!isset($_SESSION)) {
     session_start();
 }
+echo 'ddd';
 ?>
+
 
 <!DOCTYPE html>
 <html>
