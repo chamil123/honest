@@ -6,7 +6,7 @@ error_reporting(E_ERROR || E_WARNING);
 require_once'./database/connection.php';
 include './Admin/Model/MemberModel.php';
 $member = new Member();
-$result = $member->viewMembers();
+
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -258,22 +258,42 @@ $result = $member->viewMembers();
                                     <div class="col-lg-12">
                                         <h2 class="my-4" style="font-size: 25px">වර්ථමාන ගරු අධ්‍යක්ෂ මණ්ඩලය</h2>
                                     </div>
-
-                                    <?php while ($row = mysqli_fetch_array($result)) { ?>
-                                        <div class="col-lg-4  text-center mb-4" >
-                                            <img class="rounded-circle img-fluid d-block mx-auto" src="Source Files/Uploads/<?php echo $row['member_image'];?>" width="116px" alt=""/>
-                                            <h4><?php echo $row['member_class_name']; ?>
-                                                <!--  <small>Job Title</small> -->
-                                            </h4>
-                                            <span><?php echo $row['member_name']; ?></span>
-                                        </div>
-                                    <?php }
+                                    <?php
+                                    $result = $member->viewMembers();
+                                    while ($row = mysqli_fetch_array($result)) {
+                                        if ($row['member_class_type'] == 1) {
+                                            ?>
+                                    
+                                            <div class="col-lg-4  text-center mb-4" style="height: 200px">
+                                                <img class="rounded-circle img-fluid d-block mx-auto" src="Source Files/Uploads/<?php echo $row['member_image']; ?>" width="90px" alt=""/>
+                                                <h4><?php echo $row['member_class_name']; ?>
+                                                    <!--  <small>Job Title</small> -->
+                                                </h4>
+                                                <span style="margin: 0px;padding: 0px"><?php echo $row['member_name']; ?></span>
+                                            </div>
+                                            <?php
+                                        }
+                                    }
                                     ?>
-
-
-
-
-
+                                    <div class="col-lg-12">
+                                        <h2 class="my-4" style="font-size: 25px">විධායක නිලධාරීන්</h2>
+                                    </div>
+                                    <?php
+                                    $result = $member->viewMembers();
+                                    while ($row = mysqli_fetch_array($result)) {
+                                        if ($row['member_class_type'] == 2) {
+                                            ?>
+                                            <div class="col-lg-4  text-center mb-4" style="height: 200px">
+                                                <img class="rounded-circle img-fluid d-block mx-auto" src="Source Files/Uploads/<?php echo $row['member_image']; ?>" width="90px" alt=""/>
+                                                <h4><?php echo $row['member_class_name']; ?>
+                                                    <!--  <small>Job Title</small> -->
+                                                </h4>
+                                                <span style="margin-top: -150px;"><?php echo $row['member_name']; ?></span>
+                                            </div>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
 
                                     <!--                                    <div class="col-lg-12">
                                                                             <h2 class="my-4" style="font-size: 21px">විධායක නිලධාරීන්</h2>

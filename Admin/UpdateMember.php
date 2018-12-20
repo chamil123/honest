@@ -2,7 +2,18 @@
 if (!isset($_SESSION)) {
     session_start();
 }
+$member_id = $_GET['member_id'];
+error_reporting(E_ERROR || E_WARNING);
+require_once'../database/connection.php';
+include './Model/MemberModel.php';
+$member = new Member();
+$result = $member->viewMemberById($member_id);
+$row = mysqli_fetch_assoc($result);
+$resultClass = $member->viewClassByClassId($row['member_class_type']);
+
 ?>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -148,7 +159,7 @@ if (!isset($_SESSION)) {
                 <div class="alert alert-box success " style="margin: 0px 15px 10px 15px">Successfully added record</div>
                 <section class="content">
 
-                    <form class="form-horizontal" action="Controller/MemberController.php?action=add" method="POST" enctype="multipart/form-data">
+                    <form class="form-horizontal" action="Controller/MemberController.php?action=update" method="POST" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="box box-info">
@@ -159,12 +170,21 @@ if (!isset($_SESSION)) {
 
                                         <div class="form-group">
                                             <label class="control-label col-sm-3" for="fname">ශ්‍රේණිය  :</label>
+                                            <input type="hidden" id="member_id" name="member_id" value="<?=$row['member_id']?>">
                                             <div class="col-sm-6">
                                                 <select  name="member_class" id="member_class" class="form-control required" onchange="load_members();">
                                                     <option value="">-------------Plese select member-----------</option>
 
-                                                    <option value="1">අධ්‍යක්ෂ මණ්ඩලය</option>
-                                                    <option value="2">විධායක නිලධාරීන්</option>
+                                                    <option value="1" <?php
+                                                    if ($row['member_class_type'] == 1) {
+                                                        echo 'selected';
+                                                    }
+                                                    ?>>අධ්‍යක්ෂ මණ්ඩලය</option>
+                                                    <option value="2" <?php
+                                                    if ($row['member_class_type'] == 2) {
+                                                        echo 'selected';
+                                                    }
+                                                    ?>>විධායක නිලධාරීන්</option>
 
 
                                                 </select>
@@ -175,7 +195,14 @@ if (!isset($_SESSION)) {
                                             <div class="col-sm-6" id="member_typeDiv">
                                                 <select  name="member_type" id="member_type" class="form-control required">
                                                     <option value="">-------------Plese select member-----------</option>
-                                                    
+                                                    <?php while ($rows = mysqli_fetch_assoc($resultClass)) { ?>
+                                                        <option value="<?php echo $rows['member_class_id'] ?>" <?php
+                                                        if ($rows['member_class_id'] == $row['member_class_id']) {
+                                                            echo "selected";
+                                                        }
+                                                        ?>><?php echo $rows['member_class_name'] ?></option> 
+                                                            <?php }
+                                                            ?>
                                                 </select>
                                             </div>
                                         </div>
@@ -183,7 +210,14 @@ if (!isset($_SESSION)) {
                                         <div class="form-group">
                                             <label class="control-label col-sm-3" for="lname">නම   :</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control required" id="member_name" name="member_name" placeholder="Enter last name">
+                                                <input type="text" class="form-control required" id="member_name" name="member_name" value="<?php echo $row['member_name'] ?>" placeholder="Enter last name">
+                                            </div>
+                                        </div>
+                                         <div class="form-group">
+                                            <label class="control-label col-sm-3" for="dob"></label>
+                                            <div class="col-sm-9">
+                                                <span id="msgdob"></span>
+                                                <img src="Source Files/<?php echo $row['member_image']; ?>" style="width: 100px"/>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -196,7 +230,7 @@ if (!isset($_SESSION)) {
                                         <div class="form-group">
                                             <label class="control-label col-sm-3" for="dob"></label>
                                             <div class="col-sm-6">
-                                                <input type="submit" class="btn btn-success" value="Add Member" name="AddUser"/>
+                                                <input type="submit" class="btn btn-warning" value="Update Member" name="AddUser"/>
                                                 <button type="reset" name="reset" class="btn btn-danger">
                                                     <i class="glyphicon glyphicon-trash"></i>
                                                     Clear</button>

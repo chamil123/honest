@@ -19,7 +19,12 @@ $result = $member->viewMembers();
         <link rel="stylesheet" href="../dist/css/VikumTA.min.css">
         <link rel="stylesheet" href="../dist/css/_all-skins.min.css">
         <link href="../dist/css/Style.css" rel="stylesheet" type="text/css"/>
+        
+        <script src="../dist/js/jQuery-2.1.4.min.js" type="text/javascript"></script>
 
+        <script src="../dist/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="../dist/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+        <link href="../dist/js/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
 <!--        <script src="dist/js/jquery-1.8.3.min.js" type="text/javascript"></script>
         <script src="dist/js/jQuery-2.1.4.min.js" type="text/javascript"></script>-->
@@ -156,18 +161,18 @@ $result = $member->viewMembers();
                                                         <td><?php echo $row['member_class_name']; ?></td>
                                                         <td><?php echo $row['member_name']; ?></td>
                                                         <td>
-                                                            
+
                                                             <?php
-                                                            if($row['member_tittle']==1){
+                                                            if ($row['member_tittle'] == 1) {
                                                                 echo 'අධ්‍යක්ෂ මණ්ඩලය';
-                                                            }else if($row['member_tittle']==2){
+                                                            } else if ($row['member_tittle'] == 2) {
                                                                 echo 'විධායක නිලධාරීන්';
                                                             }
-                                                             ?>
-                                                        
+                                                            ?>
+
                                                         </td>
                                                         <td >
-                                                            <a href="UpdateUser.php?user_id=<?php echo $row['user_id']; ?>"  style="color: white">  <button type="button" class="btn btn-warning btn-sm ">
+                                                            <a href="../Admin/UpdateMember.php?member_id=<?php echo $row['member_id']; ?>"  style="color: white">  <button type="button" class="btn btn-warning btn-sm ">
                                                                     <i class="glyphicon glyphicon-edit"></i> </button>
                                                             </a>
                                                             <a href="UpdateUser.php?user_id=<?php echo $row['user_id']; ?>"  style="color: white">  <button type="button" class="btn btn-danger btn-sm ">
@@ -190,11 +195,20 @@ $result = $member->viewMembers();
             </div>
             <?php include '../includes/footer.php'; ?>
         </div>
-        <script src="../dist/js/jQuery-2.1.4.min.js" type="text/javascript"></script>
+        <!--<script src="../dist/js/jQuery-2.1.4.min.js" type="text/javascript"></script>-->
         <script src="../js/bootstrap.min.js"></script>
         <script src="../dist/js/app.min.js"></script>
-        <link href="../dist/js/datePicker/jquery-ui.css" rel="stylesheet" type="text/css"/>
-        <script src="../dist/js/datePicker/jquery-ui.js"></script>
+<!--        <link href="../dist/js/datePicker/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <script src="../dist/js/datePicker/jquery-ui.js"></script>-->
     </body>
+     <script>
+        $(document).ready(function () {
+            $('#customer_data').DataTable({
+                "aLengthMenu": [[3, 5, 10, 15, 20], [3, 5, 10, 15, 20]],
+                "iDisplayLength": 10,
+                 "order": [[0, "desc"]]
+            });
+        });
+    </script> 
 
 </html>

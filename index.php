@@ -6,9 +6,13 @@ error_reporting(E_ERROR || E_WARNING);
 require_once'./database/connection.php';
 include './Admin/Model/MemberModel.php';
 $member = new Member();
-$result = $member->viewMembers();
-//while($row = mysqli_fetch_array($result)){
-//    echo ''.$row['member_class_name']."<br/>";
+
+
+$reultClass = $member->viewClass();
+//while ($row = mysqli_fetch_array($reultClass)) {
+//    //if ($row['member_class_id'] == 10) {
+//    echo '' .$row['member_class_id']." - ".$row['member_class_name'] . "<br/>";
+//    // }
 //}
 //var_dump($result);
 //if ($row['member_class_name'] == "ලේකම්") {
@@ -291,79 +295,61 @@ $result = $member->viewMembers();
                                 <div class="col-md-8 col-sm-3" >
                                     <div class=" animate-box" data-animate-effect="fadeIn">
                                         <div class="col-md-12 animate-box gtco-card-item" style="height: 145px; background-color: #ffffff;padding-top: 10px">
-                                            <div class="col-md-3" style="padding-top: 5px">
-                                                <?php
-                                                while ($row = mysqli_fetch_array($result)) {
-                                                    if ($row['member_class_name'] == "ගරු සභාපති") {
-                                                        ?>
+                                            <?php
+                                            $result = $member->viewMembers();
+                                            while ($row = mysqli_fetch_array($result)) {
+                                                if ($row['member_class_id'] == 1) {
+                                                    ?>
+                                                    <div class="col-md-3" style="padding-top: 5px">
                                                         <img src="Source Files/Uploads/<?php echo $row['member_image']; ?>" class="user-image"  />
-                                                        <?php
-                                                    }
-                                                }
-                                                ?>
-                                            </div>
-                                            <div class="col-md-8" style="padding-top: 35px">
-                                                <h3 style="color: #000000">ගරු සභාපති </h3>
-                                                <?php
-                                                while ($row = mysqli_fetch_array($result)) {
-                                                    if ($row['member_class_name'] == "ගරු සභාපති") {
-                                                        ?>
+                                                    </div>
+                                                    <div class="col-md-8" style="padding-top: 35px">
+                                                        <h3 style="color: #000000"><?php echo $row['member_class_name']; ?> </h3>
                                                         <p style="margin-top: -10px;color: #000000"><?php echo $row['member_name']; ?></p>
-                                                        <?php
-                                                    }
+                                                    </div>
+                                                    <?php
                                                 }
-                                                ?>
-                                            </div>
+                                            }
+                                            ?>
                                         </div>
                                         <div class="col-md-12 animate-box gtco-card-item" style="height: 145px; background-color: #ffffff;padding-top: 10px">
-                                            <div class="col-md-3" style="padding-top: 5px">
-                                                <?php
-                                                while ($row = mysqli_fetch_array($result)) {
-                                                    if ($row['member_class_name'] == "සාමාන්‍යාධිකාරී") {
-                                                        ?>
-                                                        <img src="Source Files/Uploads/<?php echo $row['member_image']; ?>" class="user-image"  /> 
-                                                        <?php
-                                                    }
+                                            <?php
+                                            $result1 = $member->viewMembers();
+                                            while ($row1 = mysqli_fetch_array($result1)) {
+                                              
+                                                if ($row1['member_class_id'] == 6) {
+                                                    ?>
+                                                    <div class="col-md-3" style="padding-top: 5px">
+                                                        <img src="Source Files/Uploads/<?php echo $row1['member_image']; ?>" class="user-image"  />   
+                                                    </div>
+                                                    <div class="col-md-8" style="padding-top: 35px">
+                                                        <h3 style="color: #000000"><?php echo $row1['member_class_name']; ?> </h3>         
+                                                        <p style="margin-top: -10px;color: #000000"><?php echo $row1['member_name']; ?></p>
+                                                    </div>
+                                                    <?php
                                                 }
-                                                ?>
-                                            </div>
-                                            <div class="col-md-8" style="padding-top: 35px">
-                                                <h3 style="color: #000000">සාමාන්‍යාධිකාරී</h3>
-                                                <?php
-                                                while ($row = mysqli_fetch_array($result)) {
-                                                    if ($row['member_class_name'] == "සාමාන්‍යාධිකාරී") {
-                                                        ?>
-                                                        <p style="margin-top: -10px;color: #000000"><?php echo $row['member_name']; ?></p>
-                                                        <?php
-                                                    }
-                                                }
-                                                ?>
-                                            </div>
+                                            }
+                                            ?>
                                         </div>
                                         <div class="col-md-12 animate-box gtco-card-item" style="height: 145px; background-color: #ffffff;padding-top: 10px">
-                                            <div class="col-md-3" style="padding-top: 5px">
-                                                <?php
-                                                while ($row = mysqli_fetch_array($result)) {
-                                                    if ($row['member_class_name'] == "ලේකම් "){
-                                                        ?>
-                                                        <img src="Source Files/Uploads/<?php echo $row['member_image']; ?>" class="user-image"  /> 
-                                                        <?php
-                                                    }
+                                            <?php
+                                            $result2 = $member->viewMembers();
+                                            while ($row2 = mysqli_fetch_array($result2)) {
+                                                if ($row2['member_class_id'] == 5) {
+                                                    ?>
+                                                    <div class="col-md-3" style="padding-top: 5px">
+
+                                                        <img src="Source Files/Uploads/<?php echo $row2['member_image']; ?>" class="user-image"  /> 
+
+                                                    </div>
+                                                    <div class="col-md-8" style="padding-top: 35px">
+                                                        <h3 style="color: #000000"><?php echo $row2['member_class_name']; ?>  </h3>
+                                                        <p style="margin-top: -10px;color: #000000"><?php echo $row2['member_name']; ?></p>
+                                                    </div>
+                                                    <?php
                                                 }
-                                                ?>
-                                            </div>
-                                            <div class="col-md-8" style="padding-top: 35px">
-                                                <h3 style="color: #000000">ලේකම් </h3>
-                                                <?php
-                                                while ($row = mysqli_fetch_array($result)) {
-                                                    if ($row['member_class_name'] == "ලේකම් "){
-                                                        ?>
-                                                        <p style="margin-top: -10px;color: #000000"><?php echo $row['member_name']; ?></p>
-                                                        <?php
-                                                    }
-                                                }
-                                                ?>
-                                            </div>
+                                            }
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
