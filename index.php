@@ -5,10 +5,13 @@ if (!isset($_SESSION)) {
 error_reporting(E_ERROR || E_WARNING);
 require_once'./database/connection.php';
 include './Admin/Model/MemberModel.php';
-$member = new Member();
+include './Admin/Model/NewsModel.php';
 
+$member = new Member();
+$news=new News();
 
 $reultClass = $member->viewClass();
+$resultNews=$news->viewNews();
 //while ($row = mysqli_fetch_array($reultClass)) {
 //    //if ($row['member_class_id'] == 10) {
 //    echo '' .$row['member_class_id']." - ".$row['member_class_name'] . "<br/>";
@@ -102,7 +105,6 @@ $reultClass = $member->viewClass();
 
             } .user-image {
                 width: 110px;
-                //  height: 188px;
                 border-radius: 50%;
                 border: 5px solid #ffffff;
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -362,32 +364,24 @@ $reultClass = $member->viewClass();
                                             <div class="row">
                                                 <div class="col-xs-12">
                                                     <ul class="demo1" style="padding: 2px;">
+                                                        <?php
+                                                          while ($rowN = mysqli_fetch_array($resultNews)) {
+                                                        ?>
+                                                       
+                                                         
                                                         <li class="news-item">
                                                             <table cellpadding="2">
                                                                 <tr>
-                                                                    <td valign="top"><img src="uploads/default.jpg" width="60" style="padding-right: 2px"/></td>
-                                                                    <td><p style="font-size: 11px;padding-left: 5px"><span style="font-weight: bold;">    2014.03.24</span> වන දින <span style="font-weight: bold;">පෙ.ව. 9.30ට</span> යෙදෙන සුභ මොහොතින් වයඹ පළාත් ප්‍රධාන අමාත්‍ය ගරු <span style="font-weight: bold;">ධර්මසිරි දසනායක</span> මැතිදුන්ගේ සුරතින් මොරගොල්ලාගම නව සමුපකාර හා ග්‍රාමීය බැංකු නව ගොඩනැගිල්ලේදී ජනතා අයිතියට පත් කිරීම....</p> <a href="#">වැඩිදුර විස්තර...</a></td>
+                                                                    <td valign="top"><img src="honest/Source Files/<?php echo $rowN['image']; ?>" width="60" style="padding-right: 2px"/></td>
+                                                                    <td style=";font-size: 13px;padding-left: 5px;line-height: 1.6;"><p style="margin-top: -20px"><?php echo $rowN['news_content']; ?> </p> <a href="#">වැඩිදුර විස්තර...</a></td>
                                                                 </tr>
                                                             </table>
                                                         </li>
-                                                        <li class="news-item">
-                                                            <table cellpadding="4">
-                                                                <tr>
-                                                                    <td valign="top"><img src="uploads/default.jpg" width="60"  /></td>
-                                                                    <td><p style="font-size: 11px;padding-left: 5px"><span style="font-weight: bold;">    2018.03.24</span> වන දින <span style="font-weight: bold;">පෙ.ව. 11.30 ට</span> සමිති බල ප්‍රදේශයේ <span style="font-weight: bold;">5 වසර ශිෂ්‍යත්වය සමතුන්</span> ඇගැයිමේ උළෙල වයඹ පළාත් ප්‍රධාන අමාත්‍ය ගරු <span style="font-weight: bold;">ධර්මසිරි දසනායක</span> මැතිදුන්ගේ ප්‍රධානත්වයෙන් පොල්පිතිගම ජාතික පාසල් ශ්‍රවණාගාරයේදී පැවැත්වේ..</p> <a href="#">වැඩිදුර විස්තර...</a></td>
-                                                                </tr>
-                                                            </table>
-                                                        </li>
-                                                        <li class="news-item">
-                                                            <table cellpadding="4">
-                                                                <tr>
-                                                                    <td valign="top"><img src="uploads/default.jpg" width="60"  /></td>
-                                                                    <td>
-                                                                        <span style="font-weight: bold;font-size: 12px;;padding-left: 5px; color: blue">සමුපකාරය පොදු ජනතාවගේ ව්‍යාපාරයක්</span>
-                                                                        <p style="font-size: 11px;padding-left: 5px">මිත්‍රශීලිභාවය, එකමුත බව, සමානාත්මතාව, සාමුහිකත්වය සමාජවාදී දේශපාලන සිද්ධාන්ත වලට බොහෝ සමීපයෙන් සිටින ව්‍යාපාරක් ලෙස සමුපකාර ව්‍යාපාරය ලෝකය පුරා උගතුන්ගේ සහ බුද්ධිමතුන්ගේ ..</p> <a href="#">වැඩිදුර විස්තර...</a></td>
-                                                                </tr>
-                                                            </table>
-                                                        </li>
+                                                        
+                                                        <?php
+                                                          }
+                                                        ?>
+                                                   
                                                     </ul>
                                                 </div>
                                             </div>
