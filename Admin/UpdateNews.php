@@ -2,6 +2,13 @@
 if (!isset($_SESSION)) {
     session_start();
 }
+$news_id=$_GET['news_id'];
+error_reporting(E_ERROR || E_WARNING);
+require_once'../database/connection.php';
+include './Model/NewsModel.php';
+$news = new News();
+$result = $news->viewNewsbyId($news_id);
+$row= mysqli_fetch_assoc($result);
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,27 +23,7 @@ if (!isset($_SESSION)) {
 
         <script src="../dist/js/UserValidate.js" type="text/javascript"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-
-
         <script src="../plugins/ckeditor/ckeditor.js"></script>
-        <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        
-<!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        <script src="../js/editor.js"></script>
-        <script>
-            $(document).ready(function () {
-                $("#newsContent").Editor();
-            });
-        </script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-        <link href="../css/editor.css" type="text/css" rel="stylesheet"/>
-        <title>LineControl | v1.1.0</title>-->
-
-
-
     </head>
     <body class="hold-transition skin-blue sidebar-mini" onload="load()">
         <script type="text/javascript">
@@ -44,14 +31,11 @@ if (!isset($_SESSION)) {
                 var result = "<?php echo $_SESSION['msgU'] ?>";
 
                 if (result == 1) {
-                     swal("Error!", "Could't Complete the request, process is Rollback", "error");
                     $('.success').fadeIn(500).delay(1500).fadeOut(200);
                 } else if (result == 2) {
-                     swal("Error!", "Could't Complete the request, process is Rollback", "error");
                     $('.failure').fadeIn(500).delay(1500).fadeOut(200);
                     $('.failure').html('Successfully deleted record');
                 } else if (result == 3) {
-                     swal("Error!", "Could't Complete the request, process is Rollback", "error");
                     $('.warning').fadeIn(500).delay(1500).fadeOut(200);
                     $('.warning').html('Successfully Updated record');
                 }
@@ -81,7 +65,7 @@ if (!isset($_SESSION)) {
                 <section class="content-header">
                     <h1>
                         පුවත් හා සිදුවීම් 
-                        <small>පුවත් ඇතුලත් කිරීම </small>
+                        <small>පුවත් වෙනස්  කිරීම </small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="Dashboard.php"><i class="fas fa-tachometer-alt"></i> Home</a></li>
@@ -94,7 +78,7 @@ if (!isset($_SESSION)) {
                 <div class="alert alert-box success " style="margin: 0px 15px 10px 15px">Successfully added record</div>
                 <section class="content">
 
-                    <form class="form-horizontal" action="Controller/NewsController.php?action=add" method="POST" enctype="multipart/form-data">
+                    <form class="form-horizontal" action="Controller/NewsController.php?action=update" method="POST" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="box box-info">
@@ -106,7 +90,8 @@ if (!isset($_SESSION)) {
                                         <div class="form-group">
                                             <label class="control-label col-sm-2" for="lname">මාතෘකාව    :</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control required" id="news_title" name="news_title" placeholder="Enter last name">
+                                                <input type="hidden" id="news_id" value="<?=$row['news_id']?>" name="news_id" >
+                                                <input type="text" class="form-control required" id="news_title" value="<?=$row['news_title']?>" name="news_title" placeholder="Enter last name">
                                             </div>
                                         </div>
 
@@ -114,7 +99,14 @@ if (!isset($_SESSION)) {
                                             <label class="control-label col-sm-2" for="lname">පුවත පිළිබද  විස්තරය  :</label>
                                             <div class="col-sm-10">
                                                  <!--<input type="text" id="newsContent" name="newsContent" >-->
-                                                <textarea class="ckeditor" name="ckeditor"></textarea> 
+                                                <textarea class="ckeditor" name="ckeditor"><?php echo $row['news_content']?></textarea> 
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2" for="dob"></label>
+                                            <div class="col-sm-10">
+                                                <span id="msgdob"></span>
+                                                <img src="Source Files/<?php echo $row['image']; ?>" style="width:300px"/>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -127,14 +119,14 @@ if (!isset($_SESSION)) {
                                         <div class="form-group">
                                             <label class="control-label col-sm-2" for="dob"></label>
                                             <div class="col-sm-10">
-                                                <input type="submit" class="btn btn-success" value="පුවත් ඇතුලත් කිරීම " name="AddUser"/>
+                                                <input type="submit" class="btn btn-warning" value="පුවත් වෙනස් කිරීමට " name="AddUser"/>
                                                 <button type="reset" name="reset" class="btn btn-danger">
                                                     <i class="glyphicon glyphicon-trash"></i>
-                                                    ඉවත් කිරීමට</button>
+                                                    ඉවත් කිරීමට </button>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>

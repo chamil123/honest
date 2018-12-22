@@ -145,8 +145,8 @@ $resultClass = $member->viewClassByClassId($row['member_class_type']);
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Member Creation
-                        <small>Add member</small>
+                        සාමාජිකයින් කළමනාකරණය 
+                        <small>සාමාජික තොරතුරු වෙනස් කිරීම </small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="Dashboard.php"><i class="fas fa-tachometer-alt"></i> Home</a></li>
@@ -164,7 +164,7 @@ $resultClass = $member->viewClassByClassId($row['member_class_type']);
                             <div class="col-md-12">
                                 <div class="box box-info">
                                     <div class="box-header with-border">
-                                        <h3 class="box-title">Basic information</h3>
+                                        <h3 class="box-title">මූලික විස්තර </h3>
                                     </div>
                                     <div class="box-body">
 
@@ -230,10 +230,10 @@ $resultClass = $member->viewClassByClassId($row['member_class_type']);
                                         <div class="form-group">
                                             <label class="control-label col-sm-3" for="dob"></label>
                                             <div class="col-sm-6">
-                                                <input type="submit" class="btn btn-warning" value="Update Member" name="AddUser"/>
+                                                <input type="submit" class="btn btn-warning" value="තොරතුරු වෙනස් කිරීම" name="AddUser"/>
                                                 <button type="reset" name="reset" class="btn btn-danger">
                                                     <i class="glyphicon glyphicon-trash"></i>
-                                                    Clear</button>
+                                                    ඉවත් කිරීමට</button>
                                             </div>
                                         </div>
                                     </div>

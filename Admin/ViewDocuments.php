@@ -4,9 +4,9 @@ if (!isset($_SESSION)) {
 }
 error_reporting(E_ERROR || E_WARNING);
 require_once'../database/connection.php';
-include './Model/NewsModel.php';
-$news = new News();
-$result = $news->viewAllNews();
+include './Model/DocumentModel.php';
+$document = new Document();
+$result = $document->viewAllDocuments();
 ?>
 
 <!DOCTYPE html>
@@ -114,7 +114,7 @@ $result = $news->viewAllNews();
 //                                } 
 //                            });
                     //swal("Success!", "Successfully Updated record", "success");
-              
+
                 }
 <?php $_SESSION['msgU'] = "" ?>
             }
@@ -168,7 +168,7 @@ $result = $news->viewAllNews();
                                                 <tr>
                                                     <th>&nbsp;පින්තුරය</th>
                                                     <th>&nbsp;මාතෘකාව &nbsp;</th>
-                                                    <th>පුවත් විස්තරය  &nbsp;</th>
+
 
                                                     <th style="width: 80px">වෙනස් කිරීමට </th>
                                                 </tr>
@@ -178,15 +178,29 @@ $result = $news->viewAllNews();
                                             <tbody>
                                                 <?php while ($row = mysqli_fetch_array($result)) { ?>
                                                     <tr>
-                                                        <td> <img src="Source Files/<?php echo $row['image']; ?>" style="width: 100px"/></td>
-                                                        <td><?php echo $row['news_title']; ?></td>
-                                                        <td><?php echo $row['news_content']; ?></td>
+                                                        <td><?php
+                                                            $document_file = $row['document_file'];
+                                                            $str = "Hello world. It's a beautiful day.";
+                                                            $val = explode(".", $document_file);
+
+                                                            if ($val[5] == "xlsx") {
+                                                                ?>
+                                                                <img src="../images/excelImage.png" style="width: 50px"/>   
+                                                            <?php } else if ($val[5] == "docx") { ?>
+                                                                <img src="../images/wordImage.png" style="width: 50px"/>   
+                                                            <?php } else if ($val[5] == "pdf") { ?>
+                                                                <img src="../images/pdfImage.png" style="width: 50px"/>   
+                                                            <?php }
+                                                            ?> 
+                                                        </td>
+                                                        <td><?php echo $row['document_title']; ?></td>
+
 
                                                         <td style="width: 50px">
-                                                            <a href="UpdateNews.php?news_id=<?php echo $row['news_id']; ?>"  style="color: white">  <button type="button" class="btn btn-warning btn-sm ">
+                                                            <a href="UpdateNews.php?news_id=<?php echo $row['document_id']; ?>"  style="color: white">  <button type="button" class="btn btn-warning btn-sm ">
                                                                     <i class="glyphicon glyphicon-edit"></i> </button>
                                                             </a>
-                                                            <a href="Controller/NewsController.php?action=delete&news_id=<?php echo $row['news_id']; ?>"  style="color: white">  <button type="button" class="btn btn-danger btn-sm ">
+                                                            <a href="Controller/NewsController.php?action=delete&news_id=<?php echo $row['document_id']; ?>"  style="color: white">  <button type="button" class="btn btn-danger btn-sm ">
                                                                     <i class="glyphicon glyphicon-trash"></i> </button>
                                                             </a>
                                                         </td>

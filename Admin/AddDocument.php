@@ -100,6 +100,8 @@ if (!isset($_SESSION)) {
                     swal("Success!", "Successfully Updated record", "warning");
 //                    $('.warning').fadeIn(500).delay(1500).fadeOut(200);
 //                    $('.warning').html('Successfully Updated record');
+                } else if (result == 5) {
+                    swal("Error!", "Please select document", "error");
                 }
 <?php $_SESSION['msgU'] = "" ?>
             }
@@ -135,8 +137,8 @@ if (!isset($_SESSION)) {
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        සාමාජිකයින් කළමනාකරණය 
-                        <small>සාමාජිකයින් ඇතුලත් කිරීම  </small>
+                        ලිපිගොනු  කළමනාකරණය 
+                        <small>ලිපිගොනු  ඇතුලත් කිරීම  </small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="Dashboard.php"><i class="fas fa-tachometer-alt"></i> Home</a></li>
@@ -149,7 +151,7 @@ if (!isset($_SESSION)) {
                 <div class="alert alert-box success " style="margin: 0px 15px 10px 15px">Successfully added record</div>
                 <section class="content">
 
-                    <form class="form-horizontal" action="Controller/MemberController.php?action=add" method="POST" enctype="multipart/form-data">
+                    <form class="form-horizontal" action="Controller/DocumentController.php?action=add" method="POST" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="box box-info">
@@ -158,46 +160,24 @@ if (!isset($_SESSION)) {
                                     </div>
                                     <div class="box-body">
 
+
                                         <div class="form-group">
-                                            <label class="control-label col-sm-3" for="fname">ශ්‍රේණිය  :</label>
+                                            <label class="control-label col-sm-3" for="lname">මාතෘකාව    :</label>
                                             <div class="col-sm-6">
-                                                <select  name="member_class" id="member_class" class="form-control required" onchange="load_members();">
-                                                    <option value="">-------------Plese select member-----------</option>
-
-                                                    <option value="1">අධ්‍යක්ෂ මණ්ඩලය</option>
-                                                    <option value="2">විධායක නිලධාරීන්</option>
-
-
-                                                </select>
+                                                <input type="text" class="form-control required" id="document_title" name="document_title" placeholder="Enter last name">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-sm-3" for="fname">නිලධාරී  මණ්ඩලය :</label>
-                                            <div class="col-sm-6" id="member_typeDiv">
-                                                <select  name="member_type" id="member_type" class="form-control required">
-                                                    <option value="">-------------Plese select member-----------</option>
-
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-3" for="lname">නම   :</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control required" id="member_name" name="member_name" placeholder="Enter last name">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-3" for="dob">ෆොටෝ  :</label>
+                                            <label class="control-label col-sm-3" for="dob">ලිපිගොණු   :</label>
                                             <div class="col-sm-9">
                                                 <span id="msgdob"></span>
-                                                <input type="file" name="user_image" id="user_image" />
+                                                <input type="file" name="document_file" id="document_file" />
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-sm-3" for="dob"></label>
                                             <div class="col-sm-6">
-                                                <input type="submit" class="btn btn-success" value="සාමාජිකයින් ඇතුලත් කිරීම" name="AddUser"/>
+                                                <input type="submit" class="btn btn-success" value="ලිපිගොනු  ඇතුලත් කිරීම"  name="AddUser"/>
                                                 <button type="reset" name="reset" class="btn btn-danger">
                                                     <i class="glyphicon glyphicon-trash"></i>
                                                     ඉවත් කිරීමට</button>

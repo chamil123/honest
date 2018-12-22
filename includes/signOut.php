@@ -7,27 +7,23 @@ if (!isset($_SESSION)) {
 <div class="navbar-custom-menu">
     <div style="float: left;padding: 15px">
        
-//
-//            $result = $branch->branchByCode($branch_code);
-//            $row = mysqli_fetch_assoc($result);
-            ?>
-        <span style="color: #cccccc">Branch :</span>
+<!--        <span style="color: #cccccc">Branch :</span>
             <span></span>
           
-        } 
+        } -->
      
     </div>
     <ul class="nav navbar-nav">
         <!-- User Account: style can be found in dropdown.less -->
         <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="Sourse Files/uploads/" class="user-image" alt="User Image">
+                <img src="../uploads/blank_user_icon.png" class="user-image" alt="User Image">
                 <span class="hidden-xs" style="color: #999999"></span>
             </a>
             <ul class="dropdown-menu">
                 <!-- User image -->
                 <li class="user-header">
-                    <img src="Sourse Files/uploads/" class="img-circle" alt="User Image">
+                    <img src="../uploads/blank_user_icon.png" class="img-circle" alt="User Image">
                     <p>
                         Administrator
                         

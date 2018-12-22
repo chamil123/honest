@@ -19,7 +19,7 @@ $result = $member->viewMembers();
         <link rel="stylesheet" href="../dist/css/VikumTA.min.css">
         <link rel="stylesheet" href="../dist/css/_all-skins.min.css">
         <link href="../dist/css/Style.css" rel="stylesheet" type="text/css"/>
-        
+
         <script src="../dist/js/jQuery-2.1.4.min.js" type="text/javascript"></script>
 
         <script src="../dist/js/jquery.dataTables.min.js" type="text/javascript"></script>
@@ -35,7 +35,8 @@ $result = $member->viewMembers();
 
         <!--<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>-->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-
+        <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script>
             function showUserName(str)
             {
@@ -89,11 +90,13 @@ $result = $member->viewMembers();
                 if (result == 1) {
                     $('.success').fadeIn(500).delay(1500).fadeOut(200);
                 } else if (result == 2) {
-                    $('.failure').fadeIn(500).delay(1500).fadeOut(200);
-                    $('.failure').html('Successfully deleted record');
+                    swal("Success!", "Successfully Deleted record", "success");
+//                    $('.failure').fadeIn(500).delay(1500).fadeOut(200);
+//                    $('.failure').html('Successfully deleted record');
                 } else if (result == 3) {
-                    $('.warning').fadeIn(500).delay(1500).fadeOut(200);
-                    $('.warning').html('Successfully Updated record');
+                    swal("Success!", "Successfully Updated record", "warning");
+//                    $('.warning').fadeIn(500).delay(1500).fadeOut(200);
+//                    $('.warning').html('Successfully Updated record');
                 }
 <?php $_SESSION['msgU'] = "" ?>
             }
@@ -120,8 +123,8 @@ $result = $member->viewMembers();
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Member Creation
-                        <small>Add member</small>
+                        සාමාජිකයින් කළමනාකරණය 
+                        <small>මසියලුම සාමාජිකයින් </small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="Dashboard.php"><i class="fas fa-tachometer-alt"></i> Home</a></li>
@@ -198,17 +201,17 @@ $result = $member->viewMembers();
         <!--<script src="../dist/js/jQuery-2.1.4.min.js" type="text/javascript"></script>-->
         <script src="../js/bootstrap.min.js"></script>
         <script src="../dist/js/app.min.js"></script>
-<!--        <link href="../dist/js/datePicker/jquery-ui.css" rel="stylesheet" type="text/css"/>
-        <script src="../dist/js/datePicker/jquery-ui.js"></script>-->
+        <!--        <link href="../dist/js/datePicker/jquery-ui.css" rel="stylesheet" type="text/css"/>
+                <script src="../dist/js/datePicker/jquery-ui.js"></script>-->
     </body>
-     <script>
-        $(document).ready(function () {
-            $('#customer_data').DataTable({
-                "aLengthMenu": [[3, 5, 10, 15, 20], [3, 5, 10, 15, 20]],
-                "iDisplayLength": 10,
-                 "order": [[0, "desc"]]
-            });
-        });
+    <script>
+           $(document).ready(function () {
+               $('#customer_data').DataTable({
+                   "aLengthMenu": [[3, 5, 10, 15, 20], [3, 5, 10, 15, 20]],
+                   "iDisplayLength": 10,
+                   "order": [[0, "desc"]]
+               });
+           });
     </script> 
 
 </html>

@@ -8,10 +8,10 @@ include './Admin/Model/MemberModel.php';
 include './Admin/Model/NewsModel.php';
 
 $member = new Member();
-$news=new News();
+$news = new News();
 
 $reultClass = $member->viewClass();
-$resultNews=$news->viewNews();
+$resultNews = $news->viewNews();
 //while ($row = mysqli_fetch_array($reultClass)) {
 //    //if ($row['member_class_id'] == 10) {
 //    echo '' .$row['member_class_id']." - ".$row['member_class_name'] . "<br/>";
@@ -139,9 +139,21 @@ $resultNews=$news->viewNews();
                 color: #5d3250;
                 cursor: hand; cursor: pointer;
             }
+
         </style> 
+        
     </head>
     <body>
+        <script>
+          { $(".class-span").each(function(i){
+        var len=$(this).text().trim().length;
+        if(len>100)
+        {
+            $(this).text($(this).text().substr(0,100)+'...');
+        }
+    });
+ });
+        </script>
         <div class="gtco-loader"></div>
         <div id="page">
             <div class="page-inner">
@@ -318,7 +330,7 @@ $resultNews=$news->viewNews();
                                             <?php
                                             $result1 = $member->viewMembers();
                                             while ($row1 = mysqli_fetch_array($result1)) {
-                                              
+
                                                 if ($row1['member_class_id'] == 6) {
                                                     ?>
                                                     <div class="col-md-3" style="padding-top: 5px">
@@ -365,23 +377,39 @@ $resultNews=$news->viewNews();
                                                 <div class="col-xs-12">
                                                     <ul class="demo1" style="padding: 2px;">
                                                         <?php
-                                                          while ($rowN = mysqli_fetch_array($resultNews)) {
+                                                        while ($rowN = mysqli_fetch_array($resultNews)) {
+                                                            ?>
+
+
+                                                            <li class="news-item">
+                                                                <table cellpadding="2">
+                                                                    <tr>
+                                                                    <!--<p>sasdasdasdasd</p>-->
+                                      
+
+
+                                                                        <div style="float: left;padding-right: 5px;padding-bottom: 5px;">
+                                                                            <img src="honest/Source Files/<?php echo $rowN['image']; ?>" width="150" style="padding-right: 2px"/>
+                                                                        </div>
+                                                                    <div  style="float: none;font-size: 13px;padding-left: 5px;line-height: 1.6;  ">
+                                                                            <p  class="class-span" style="margin-top: -20px;max-width: 75ch;"><?php echo $rowN['news_content']; ?> </p> 
+                                                                        </div>
+                                                                  
+                                                                   
+
+
+                                                                        <div style="margin-top: -20px"><a href="#">වැඩිදුර විස්තර...</a></div>
+        <!--                                                                    <td valign="top"><img src="honest/Source Files/<?php echo $rowN['image']; ?>" width="60" style="padding-right: 2px"/></td>
+                                                                            <td style=";font-size: 13px;padding-left: 5px;line-height: 1.6;"><p style="margin-top: -20px"><?php echo $rowN['news_content']; ?> </p> <a href="#">වැඩිදුර විස්තර...</a></td>-->
+                                                                    
+                                                                    </tr>
+                                                                </table>
+                                                            </li>
+
+                                                            <?php
+                                                        }
                                                         ?>
-                                                       
-                                                         
-                                                        <li class="news-item">
-                                                            <table cellpadding="2">
-                                                                <tr>
-                                                                    <td valign="top"><img src="honest/Source Files/<?php echo $rowN['image']; ?>" width="60" style="padding-right: 2px"/></td>
-                                                                    <td style=";font-size: 13px;padding-left: 5px;line-height: 1.6;"><p style="margin-top: -20px"><?php echo $rowN['news_content']; ?> </p> <a href="#">වැඩිදුර විස්තර...</a></td>
-                                                                </tr>
-                                                            </table>
-                                                        </li>
-                                                        
-                                                        <?php
-                                                          }
-                                                        ?>
-                                                   
+
                                                     </ul>
                                                 </div>
                                             </div>
@@ -472,7 +500,7 @@ $resultNews=$news->viewNews();
         <script type="text/javascript">
                                         $(function () {
                                             $(".demo1").bootstrapNews({
-                                                newsPerPage: 3,
+                                                newsPerPage: 2,
                                                 autoplay: true,
                                                 pauseOnHover: true,
                                                 direction: 'up',
@@ -482,6 +510,7 @@ $resultNews=$news->viewNews();
                                                 }
                                             });
                                         });
+                                        
         </script>
     </body>
 </html>

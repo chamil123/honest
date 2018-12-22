@@ -45,7 +45,7 @@ if (!isset($_SESSION)) {
             </li>
             <li class="treeview">
                 <a href="">
-                    <i class="fas fa-file-alt"></i>
+                    <i class="far fa-newspaper"></i>
                     <span> පුවත් හා සිදුවීම් කළමනාකරණය </span>
                     <span class="label label-primary pull-right"></span>
                 </a>
@@ -56,8 +56,19 @@ if (!isset($_SESSION)) {
                     <li><a href="ViewNews.php"><i class="far fa-circle"></i> සියලුම පුවත් </a></li>
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="">
+                    <i class="fas fa-file-word"></i>
+                    <span> ලිපිගොනු කළමනාකරණය  </span>
+                    <span class="label label-primary pull-right"></span>
+                </a>
+                <ul class="treeview-menu">
 
-           
+                    <li><a href="AddDocument.php"><i class="far fa-circle"></i> පුවත් ඇතුලත් කිරීම</a></li>
+
+                    <li><a href="ViewDocuments.php"><i class="far fa-circle"></i> සියලුම පුවත් </a></li>
+                </ul>
+            </li>        
 
         </ul>
     </section>
