@@ -1,3 +1,16 @@
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+error_reporting(E_ERROR || E_WARNING);
+require_once'./database/connection.php';
+include './Admin/Model/MemberModel.php';
+include './Admin/Model/NewsModel.php';
+$member = new Member();
+$news = new News();
+
+$resultNews = $news->viewNews();
+?>
 <!DOCTYPE HTML>
 
 <html>
@@ -6,9 +19,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>පොල්පිතිගම විවිද සේවා සමුපකාර සමිතිය</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Free HTML5 Website Template by GetTemplates.co" />
+<!--        <meta name="description" content="Free HTML5 Website Template by GetTemplates.co" />
         <meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-        <meta name="author" content="GetTemplates.co" />
+        <meta name="author" content="GetTemplates.co" />-->
 
         <!-- Facebook and Twitter integration -->
         <meta property="og:title" content=""/>
@@ -27,24 +40,17 @@
         <script src="js/jquery.min.js" type="text/javascript"></script>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
         <link href="css/styles.css" rel="stylesheet" type="text/css"/>
-
-
         <link rel="stylesheet" href="css/animate.css">
         <!-- Icomoon Icon Fonts-->
         <link rel="stylesheet" href="css/icomoon.css">
         <!-- Themify Icons-->
         <link rel="stylesheet" href="css/themify-icons.css">
         <!-- Bootstrap  -->
-
-
         <!-- Magnific Popup -->
         <link rel="stylesheet" href="css/magnific-popup.css">
 
@@ -57,29 +63,20 @@
 
         <!-- Modernizr JS -->
         <script src="js/modernizr-2.6.2.min.js"></script>
-        <!-- FOR IE9 below -->
-        <!--[if lt IE 9]>
-        <script src="js/respond.min.js"></script>
-        <![endif]-->
-
 
         <script type="text/javascript" src="sliderengine/jquery.hislider.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
-
-
         <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
         <link href="css/site.css" rel="stylesheet" type="text/css" />
 
         <script src="scripts/jquery.bootstrap.newsbox.min.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-    function reply_click(clicked_id)
-{
-    alert(clicked_id);
-}
-</script>
+        <script type="text/javascript">
+            function reply_click(clicked_id)
+            {
+                alert(clicked_id);
+            }
+        </script>
 
 
         <style>
@@ -169,7 +166,7 @@
             }
 
             p, li {
-                 line-height: 27px;
+                line-height: 27px;
             }
 
             body {
@@ -177,15 +174,15 @@
                 font-family: 'Roboto', sans-serif, Malithi Web;
                 font-weight: 200;
                 /* letter-spacing: 0.5px; */
-                }
+            }
 
             body, h1, h2, h3, h4, h5 {
                 font-family: "Malithi Web", Arial, Helvetica, sans-serif !important;
-                }
+            }
 
-                body {
+            body {
                 color: #2c2c2c !important;
-                }
+            }
             body {
                 line-height: 1.42857143;
                 color: #000;
@@ -198,7 +195,7 @@
             h3 {
                 font-size: 125%;
             }
-           
+
             h1, h2, h3, h4, h5 {
                 letter-spacing: 1px !important;
                 font-family: 'Roboto', sans-serif, Malithi Web;
@@ -236,15 +233,6 @@
                 margin-bottom: 20px;
                 position: relative;
             }
-
-
-
-
-
-
-
-
-
         </style> 
     </head>
     <body>
@@ -269,7 +257,7 @@
                                                 </div>
                                             </div>	
                                         </div>-->
-                  <nav class="gtco-nav sticky-banner" role="navigation" style="height: 46px;padding: 0px">
+                    <nav class="gtco-nav sticky-banner" role="navigation" style="height: 46px;padding: 0px">
                         <div class="gtco-container">
                             <div style="height: 90px;background-color: #FFF; background: rgba(255,255,255,0.85); ">
                                 <div class="col-md-1" style="padding-left: 15px;padding-top: 4px">
@@ -340,29 +328,16 @@
                                 <div style="height: 1px;border-bottom: 2px solid #000099"></div>
                             </div>
                         </div>
-
-
-
                     </nav>
-
-
-
-
-
-
                 </div>
 
                 <div class="row" style=" height: 570px; " >
 
-                     <div id='hislider1' style="z-index: -1; width:auto;  max-height:570px;height:100%; margin-top: 0px;padding:0px">        
+                    <div id='hislider1' style="z-index: -1; width:auto;  max-height:570px;height:100%; margin-top: 0px;padding:0px">        
 
                     </div>
 
                 </div>
-
-
-
-
                 <div class="overflow-hid"  style=";margin-top: 70px"> 
                     <div class="gtco-sectio7">
                         <div class="gtco-container">
@@ -370,9 +345,6 @@
 
                             </div>
                             <div class="row" >
-
-
-
                             </div>
                         </div>
                     </div>
@@ -382,75 +354,75 @@
 
                             <div class="row">
                                 <div class="col-md-8 col-sm-3" >
-                                   <!--start new content-->
+                                    <!--start new content-->
 
-                                        <div itemprop="articleBody">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 vision">
+                                    <div itemprop="articleBody">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 vision">
                                             <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"> </div>
-                                                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                                                    <h3>අපේ දැක්ම</h3>
-                                                    <p>තිරසර සංවර්ධනය තුලින් වයඹ පළාතේ විශිෂ්ඨතම සමූපකාර ව්‍යවසායකයා වීම.</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mission">
-                                            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12" style="text-align: justify;"> </div>
-                                                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                                                    <h3 style="text-align: justify;">අපේ මෙහෙවර</h3>
-                                                    <p style="text-align: justify;">සාමාජික, සේවක ප්‍රජාව පෙරටු කර ගනිමින් ඔවුන්ගේ අවශ්‍යතා, උවමනා, අපේක්ෂාවන් ඉටු කරමින් මනා කළමණාකාරිත්වයකින් ආයතනික සම්පත් ඵලදායී ලෙස මෙහෙය වීම.</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 objective">
-                                            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"> </div>
-                                                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                                                    <h3 style="text-align: justify;">අප ගැන හැදින්වීම.</h3>
-                                                    <p>වයඹ පළාතේ කුරුණෑගල දිස්ත්‍රීක්කයේ පොල්පිතිගම ප්‍රාදේශීය ලේකම් කොට්ඨාශය ආවරණය වන බල ප්‍රදේශය සී/ස  පොල්පිතිගම විවිධ සේවා සමූපකාර සමිති බල ප්‍රදේශය වේ.</p>
-                                                     <p> 1972 අංක 5 දරණ සමූපකාර පනතට අනුව 1989-03-22 වන දින කු/1903 යටතේ සාමාජික මහතුන් 28 දෙනෙකුගෙන් හා එවකට සමුපකාර සංවර්ධන කොමසාරිස් රංජිත් වෛද්‍යතිලක මහතාගේ මැදිහත් වීම මත මෙම සමිතිය ලියාපදිංචි කරනු ලැබ කුළී පදනම මත ගොඩනැගිල්ලක පවත්වාගෙන යමින් පසුකාලීනව ප්‍රධාන  කාර්යාලය පොල්පිතිගම නගර මධ්‍යයේ සාදා නිමකල තෙමහල් ගොඩ නැගිල්ලේ දෙවනි මහලේ හා තෙවන මහලේ පිහිටා ඇත. </p>
-                                                    <p>බිම් මහල තුල කෝප් සිටි වෙළද මධ්‍යස්ථානය, රක‍ෂණ සේවා අංශය, ලීසිං සේවා අංශය,කෝප් කොමියුණිකේෂන් අංශය, හා ග්‍රාමීය බැංකුව වන වානිජ මධ්‍යස්ථාන පිහිටා ඇත. මීට අමතරව තොග අංශය ඉන්ධන පිරවුම්හල, කෝප් පැකින් සෙන්ටර්, මල් ශාලාව, පොල්පිතිගම නගරයේ පිහිටා තිඛෙන අතර අනෙකුත් ග්‍රාමීය බැංකු ශාඛා 12ක්, කෝප් සිටි 01,මිණි කෝප් සිටි 10ක් සිල්ලර අලෙවි සැල් 07ක් හා සංචාරක වෙළ`ද අංශයක් සමිති බල ප්‍රදේශය ආවරණය වන අයුරින් ස්ථාන ගතව ඇත.</P>
-                                                </div>
-                                            </div> 
-
-                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 objective2">
-                                        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"> </div>
                                             <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                                            <h4 style="text-align: justify;">සමුපකාර ප්‍රතිපත්ති .</h4>
-                                            <ul>
-                                                <li>ස්වෙච්ජා හා විවෘත සාමාජිකත්වය.</li>
-                                                <li>ප‍්‍රජාතන්ත‍්‍රවාදී පාලනය.</li>
-                                                <li>සාමාජිකයන්ගේ ආර්ථික සහභාගිත්වය.</li>
-                                                <li>ස්වරී භාවය හා නිදහස.</li>
-                                                <li>අධ්‍යාපනය, පුහුණුව හා තොරතුරු.</li>
-                                                <li>සමූපකාර සංවිධාන අතර සහයෝගීතාවය.</li>
-                                                <li>ප‍්‍රජාව පිළිබඳ සැලකිලිමත් වීම.</li>
-                                            </ul>
-
-                                            <h4 style="text-align: justify;">සමුපකාර සාරධර්ම හා ආචාරධර්ම.</h4>
-                                            <h5 style="text-align: justify;">සමුපකාර ආචාරධර්ම.</h5>
-                                            <ul>
-                                                <li>අවංකභාවය.</li>
-                                                <li>විවෘතභාවය.</li>
-                                                <li>සමාජ වගකීම.</li>
-                                                <li>පරෝපකාරය. (අන්‍යයන් රැකබලා ගැනීම)</li>
-                                            </ul>
-                                            
-                                            <h5 style="text-align: justify;">සමුපකාර සාරධර්ම.</h5>
-                                            <ul>
-                                                <li>ප‍්‍රජාතන්ත‍්‍රවාදය.</li>
-                                                <li>සමානාත්මතාවය.</li>
-                                                <li>සහයෝගීතාවය.</li>
-                                                <li>සාධාරණත්වය.</li>
-                                                <li>ආත්මාධාරය.</li>
-                                                <li>ස්වයං වගකීම</li>
-                                            </ul>
+                                                <h3>අපේ දැක්ම</h3>
+                                                <p>තිරසර සංවර්ධනය තුලින් වයඹ පළාතේ විශිෂ්ඨතම සමූපකාර ව්‍යවසායකයා වීම.</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mission">
+                                            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12" style="text-align: justify;"> </div>
+                                            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                                                <h3 style="text-align: justify;">අපේ මෙහෙවර</h3>
+                                                <p style="text-align: justify;">සාමාජික, සේවක ප්‍රජාව පෙරටු කර ගනිමින් ඔවුන්ගේ අවශ්‍යතා, උවමනා, අපේක්ෂාවන් ඉටු කරමින් මනා කළමණාකාරිත්වයකින් ආයතනික සම්පත් ඵලදායී ලෙස මෙහෙය වීම.</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 objective">
+                                            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"> </div>
+                                            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                                                <h3 style="text-align: justify;">අප ගැන හැදින්වීම.</h3>
+                                                <p>වයඹ පළාතේ කුරුණෑගල දිස්ත්‍රීක්කයේ පොල්පිතිගම ප්‍රාදේශීය ලේකම් කොට්ඨාශය ආවරණය වන බල ප්‍රදේශය සී/ස  පොල්පිතිගම විවිධ සේවා සමූපකාර සමිති බල ප්‍රදේශය වේ.</p>
+                                                <p> 1972 අංක 5 දරණ සමූපකාර පනතට අනුව 1989-03-22 වන දින කු/1903 යටතේ සාමාජික මහතුන් 28 දෙනෙකුගෙන් හා එවකට සමුපකාර සංවර්ධන කොමසාරිස් රංජිත් වෛද්‍යතිලක මහතාගේ මැදිහත් වීම මත මෙම සමිතිය ලියාපදිංචි කරනු ලැබ කුළී පදනම මත ගොඩනැගිල්ලක පවත්වාගෙන යමින් පසුකාලීනව ප්‍රධාන  කාර්යාලය පොල්පිතිගම නගර මධ්‍යයේ සාදා නිමකල තෙමහල් ගොඩ නැගිල්ලේ දෙවනි මහලේ හා තෙවන මහලේ පිහිටා ඇත. </p>
+                                                <p>බිම් මහල තුල කෝප් සිටි වෙළද මධ්‍යස්ථානය, රක‍ෂණ සේවා අංශය, ලීසිං සේවා අංශය,කෝප් කොමියුණිකේෂන් අංශය, හා ග්‍රාමීය බැංකුව වන වානිජ මධ්‍යස්ථාන පිහිටා ඇත. මීට අමතරව තොග අංශය ඉන්ධන පිරවුම්හල, කෝප් පැකින් සෙන්ටර්, මල් ශාලාව, පොල්පිතිගම නගරයේ පිහිටා තිඛෙන අතර අනෙකුත් ග්‍රාමීය බැංකු ශාඛා 12ක්, කෝප් සිටි 01,මිණි කෝප් සිටි 10ක් සිල්ලර අලෙවි සැල් 07ක් හා සංචාරක වෙළ`ද අංශයක් සමිති බල ප්‍රදේශය ආවරණය වන අයුරින් ස්ථාන ගතව ඇත.</P>
                                             </div>
                                         </div> 
 
-                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 objective2">
+                                            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"> </div>
+                                            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                                                <h4 style="text-align: justify;">සමුපකාර ප්‍රතිපත්ති .</h4>
+                                                <ul>
+                                                    <li>ස්වෙච්ජා හා විවෘත සාමාජිකත්වය.</li>
+                                                    <li>ප‍්‍රජාතන්ත‍්‍රවාදී පාලනය.</li>
+                                                    <li>සාමාජිකයන්ගේ ආර්ථික සහභාගිත්වය.</li>
+                                                    <li>ස්වරී භාවය හා නිදහස.</li>
+                                                    <li>අධ්‍යාපනය, පුහුණුව හා තොරතුරු.</li>
+                                                    <li>සමූපකාර සංවිධාන අතර සහයෝගීතාවය.</li>
+                                                    <li>ප‍්‍රජාව පිළිබඳ සැලකිලිමත් වීම.</li>
+                                                </ul>
+
+                                                <h4 style="text-align: justify;">සමුපකාර සාරධර්ම හා ආචාරධර්ම.</h4>
+                                                <h5 style="text-align: justify;">සමුපකාර ආචාරධර්ම.</h5>
+                                                <ul>
+                                                    <li>අවංකභාවය.</li>
+                                                    <li>විවෘතභාවය.</li>
+                                                    <li>සමාජ වගකීම.</li>
+                                                    <li>පරෝපකාරය. (අන්‍යයන් රැකබලා ගැනීම)</li>
+                                                </ul>
+
+                                                <h5 style="text-align: justify;">සමුපකාර සාරධර්ම.</h5>
+                                                <ul>
+                                                    <li>ප‍්‍රජාතන්ත‍්‍රවාදය.</li>
+                                                    <li>සමානාත්මතාවය.</li>
+                                                    <li>සහයෝගීතාවය.</li>
+                                                    <li>සාධාරණත්වය.</li>
+                                                    <li>ආත්මාධාරය.</li>
+                                                    <li>ස්වයං වගකීම</li>
+                                                </ul>
+                                            </div>
+                                        </div> 
+
+                                    </div>
 
 
-                                   <!--end new content-->
+                                    <!--end new content-->
                                 </div>
 
-                            <div class="col-md-4">
+                                <div class="col-md-4">
                                     <div class="panel panel-primary animate-box">
                                         <div class="panel-heading">
                                             <span class="glyphicon glyphicon-list-alt"></span><b> නැවුම් පුවත් හා සිදුවීම්</b></div>
@@ -459,32 +431,29 @@
                                             <div class="row">
                                                 <div class="col-xs-12">
                                                     <ul class="demo1" style="padding: 2px;">
-                                                        <li class="news-item">
-                                                            <table cellpadding="2">
-                                                                <tr>
-                                                                    <td valign="top"><img src="uploads/default.jpg" width="60" style="padding-right: 2px"/></td>
-                                                                    <td><p style="font-size: 11px;padding-left: 5px"><span style="font-weight: bold;">    2014.03.24</span> වන දින <span style="font-weight: bold;">පෙ.ව. 9.30ට</span> යෙදෙන සුභ මොහොතින් වයඹ පළාත් ප්‍රධාන අමාත්‍ය ගරු <span style="font-weight: bold;">ධර්මසිරි දසනායක</span> මැතිදුන්ගේ සුරතින් මොරගොල්ලාගම නව සමුපකාර හා ග්‍රාමීය බැංකු නව ගොඩනැගිල්ලේදී ජනතා අයිතියට පත් කිරීම....</p> <a href="#">වැඩිදුර විස්තර...</a></td>
-                                                                </tr>
-                                                            </table>
-                                                        </li>
-                                                        <li class="news-item">
-                                                            <table cellpadding="4">
-                                                                <tr>
-                                                                    <td valign="top"><img src="uploads/default.jpg" width="60"  /></td>
-                                                                    <td><p style="font-size: 11px;padding-left: 5px"><span style="font-weight: bold;">    2018.03.24</span> වන දින <span style="font-weight: bold;">පෙ.ව. 11.30 ට</span> සමිති බල ප්‍රදේශයේ <span style="font-weight: bold;">5 වසර ශිෂ්‍යත්වය සමතුන්</span> ඇගැයිමේ උළෙල වයඹ පළාත් ප්‍රධාන අමාත්‍ය ගරු <span style="font-weight: bold;">ධර්මසිරි දසනායක</span> මැතිදුන්ගේ ප්‍රධානත්වයෙන් පොල්පිතිගම ජාතික පාසල් ශ්‍රවණාගාරයේදී පැවැත්වේ..</p> <a href="#">වැඩිදුර විස්තර...</a></td>
-                                                                </tr>
-                                                            </table>
-                                                        </li>
-                                                        <li class="news-item">
-                                                            <table cellpadding="4">
-                                                                <tr>
-                                                                    <td valign="top"><img src="uploads/default.jpg" width="60"  /></td>
-                                                                    <td>
-                                                                        <span style="font-weight: bold;font-size: 12px; color: blue;;padding-left: 5px">සමුපකාරය පොදු ජනතාවගේ ව්‍යාපාරයක්</span>
-                                                                        <p style="font-size: 11px;padding-left: 5px">මිත්‍රශීලිභාවය, එකමුත බව, සමානාත්මතාව, සාමුහිකත්වය සමාජවාදී දේශපාලන සිද්ධාන්ත වලට බොහෝ සමීපයෙන් සිටින ව්‍යාපාරක් ලෙස සමුපකාර ව්‍යාපාරය ලෝකය පුරා උගතුන්ගේ සහ බුද්ධිමතුන්ගේ ..</p> <a href="#">වැඩිදුර විස්තර...</a></td>
-                                                                </tr>
-                                                            </table>
-                                                        </li>
+                                                        <?php
+                                                        while ($rowN = mysqli_fetch_array($resultNews)) {
+                                                            ?>
+                                                            <li class="news-item">
+                                                                <table cellpadding="2">
+                                                                    <tr>
+                                                                    <!--<p>sasdasdasdasd</p>-->
+                                                                    <div style="float: left;padding-right: 5px;padding-bottom: 5px;">
+                                                                        <img src="honest/Source Files/<?php echo $rowN['image']; ?>" width="150" style="padding-right: 2px"/>
+                                                                    </div>
+                                                                    <div  style="float: none;font-size: 13px;padding-left: 5px;line-height: 1.6;  ">
+                                                                        <p  class="class-span" style="margin-top: -20px;max-width: 75ch;"><?php echo $rowN['news_content']; ?> </p> 
+                                                                    </div>
+                                                                    <div style="margin-top: -20px"><a href="#">වැඩිදුර විස්තර...</a></div>
+    <!--                                                                    <td valign="top"><img src="honest/Source Files/<?php echo $rowN['image']; ?>" width="60" style="padding-right: 2px"/></td>
+                                                                        <td style=";font-size: 13px;padding-left: 5px;line-height: 1.6;"><p style="margin-top: -20px"><?php echo $rowN['news_content']; ?> </p> <a href="#">වැඩිදුර විස්තර...</a></td>-->       
+                                                                    </tr>
+                                                                </table>
+                                                            </li>
+                                                            <?php
+                                                        }
+                                                        ?>
+
                                                     </ul>
                                                 </div>
                                             </div>
@@ -539,8 +508,8 @@
                                 <div class="gtco-widget">
                                     <h3>සම්බන්ද වෙන්න</h3>
                                     <ul class="gtco-quick-contact">
-                                       <li><a href="#"><i class="icon-phone"></i> 037 22 73091</a></li>
-                                         <li><a href="#"><i class="icon-phone"></i> 037 57 35911</a></li>
+                                        <li><a href="#"><i class="icon-phone"></i> 037 22 73091</a></li>
+                                        <li><a href="#"><i class="icon-phone"></i> 037 57 35911</a></li>
 
                                     </ul>
                                 </div>
@@ -600,20 +569,20 @@
         <!-- Main -->
         <script src="js/main.js"></script>
         <script type="text/javascript">
-            $(function () {
-                $(".demo1").bootstrapNews({
-                    newsPerPage: 3,
-                    autoplay: true,
-                    pauseOnHover: true,
-                    direction: 'up',
-                    newsTickerInterval: 4000,
-                    onToDo: function () {
-                        //console.log(this);
-                    }
-                });
+    $(function () {
+        $(".demo1").bootstrapNews({
+            newsPerPage: 3,
+            autoplay: true,
+            pauseOnHover: true,
+            direction: 'up',
+            newsTickerInterval: 4000,
+            onToDo: function () {
+                //console.log(this);
+            }
+        });
 
 
-            });
+    });
         </script>
     </body>
 </html>

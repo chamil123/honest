@@ -347,7 +347,7 @@ $reultDoc = $document->viewAllDocuments();
 
                                                     <div class="col-md-4" style="padding-bottom: -20px;" >
                                                         <div class="thumbnail">
-                                                            <img id="myImg" class="img-thumbnail image-responsive rounded" src="images/001_170x238_77a1602b0f97d2bc19c9fae0cda046d2.jpg" style=" display:block;
+                                                            <img id="myImg" class="img-thumbnail image-responsive rounded" src="Source Files/Documet/<?php echo $rowD['document_image']?>" style=" display:block;
                                                                  margin:auto;height:250px;marging:0px;padding:0px; ">
                                                             <div class="caption">
                                                                 <h5 style="padding: 5px"><?=$rowD['document_title']?></h5>
@@ -357,7 +357,7 @@ $reultDoc = $document->viewAllDocuments();
                                                                    // echo 'sfdf ;'.$aa[3];
                                                                     
                                                                 ?>
-                                                                <p style="margin-top: -20px;"><a href="download.php?nama=<?=$file_name[3]?>" class="btn btn-danger  btn-block" role="button">Download</a> </p>
+                                                                <p style="margin-top: -20px;"><a href="download.php?nama=<?=$file_name[3]?>" class="btn btn-info  btn-block" role="button">Download</a> </p>
                                                             </div>
                                                         </div>
                                                     </div>

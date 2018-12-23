@@ -2,13 +2,14 @@
 if (!isset($_SESSION)) {
     session_start();
 }
+$document_id = $_GET['document_id'];
 error_reporting(E_ERROR || E_WARNING);
 require_once'../database/connection.php';
-include './Model/MemberModel.php';
-$member = new Member();
-$result = $member->viewMembers();
+include './Model/DocumentModel.php';
+$document = new Document();
+$result = $document->viewDocumentById($document_id);
+$row = mysqli_fetch_assoc($result);
 ?>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,24 +21,28 @@ $result = $member->viewMembers();
         <link rel="stylesheet" href="../dist/css/_all-skins.min.css">
         <link href="../dist/css/Style.css" rel="stylesheet" type="text/css"/>
 
-        <script src="../dist/js/jQuery-2.1.4.min.js" type="text/javascript"></script>
-
-        <script src="../dist/js/jquery.dataTables.min.js" type="text/javascript"></script>
-        <script src="../dist/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
-        <link href="../dist/js/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
-
-<!--        <script src="dist/js/jquery-1.8.3.min.js" type="text/javascript"></script>
-        <script src="dist/js/jQuery-2.1.4.min.js" type="text/javascript"></script>-->
         <script src="../dist/js/UserValidate.js" type="text/javascript"></script>
-
-        <!--<link href="dist/css/jquery-ui.css" rel="stylesheet" type="text/css"/>-->
-        <!--<script src="dist/js/jquery-ui.js" type="text/javascript"></script>-->
-
-        <!--<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>-->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
         <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script>
+            $(function () {
+                $("#dob").datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: 'yy-mm-dd',
+                    yearRange: "-55:-16"
+                });
+
+            });
+
+        </script>
+        <script>
+            function load_members() {
+                $('#rep_div').load("load_area_rep.php", {'dis_id': $('#dis_id').val(), 'ar_id': ''});
+                $('#member_typeDiv').load("load_member.php", {'member_class': $('#member_class').val()});
+
+            }
             function showUserName(str)
             {
                 // alert("sasas");
@@ -84,11 +89,16 @@ $result = $member->viewMembers();
     </head>
     <body class="hold-transition skin-blue sidebar-mini" onload="load()">
         <script type="text/javascript">
+
             function load() {
+
+
                 var result = "<?php echo $_SESSION['msgU'] ?>";
 
+
                 if (result == 1) {
-                    $('.success').fadeIn(500).delay(1500).fadeOut(200);
+                    swal("Success!", "Successfully Added record", "success");
+//                  $('.success').fadeIn(500).delay(1500).fadeOut(200);
                 } else if (result == 2) {
                     swal("Success!", "Successfully Deleted record", "success");
 //                    $('.failure').fadeIn(500).delay(1500).fadeOut(200);
@@ -97,9 +107,12 @@ $result = $member->viewMembers();
                     swal("Success!", "Successfully Updated record", "warning");
 //                    $('.warning').fadeIn(500).delay(1500).fadeOut(200);
 //                    $('.warning').html('Successfully Updated record');
+                } else if (result == 5) {
+                    swal("Error!", "Please select document", "error");
                 }
 <?php $_SESSION['msgU'] = "" ?>
             }
+
 
         </script>
         <div class="wrapper">
@@ -123,8 +136,8 @@ $result = $member->viewMembers();
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        සාමාජිකයින් කළමනාකරණය 
-                        <small>මසියලුම සාමාජිකයින් </small>
+                        ලිපිගොනු  කළමනාකරණය 
+                        <small>ලිපිගොනු  ඇතුලත් කිරීම  </small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="Dashboard.php"><i class="fas fa-tachometer-alt"></i> Home</a></li>
@@ -137,57 +150,46 @@ $result = $member->viewMembers();
                 <div class="alert alert-box success " style="margin: 0px 15px 10px 15px">Successfully added record</div>
                 <section class="content">
 
-                    <form class="form-horizontal" action="Controller/MemberController.php?action=add" method="POST" >
+                    <form class="form-horizontal" action="Controller/DocumentController.php?action=update" method="POST" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="box box-info">
-
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">මූලික විස්තර </h3>
+                                    </div>
                                     <div class="box-body">
 
-                                        <table class="table table-striped" width="100%" id="customer_data">
-
-                                            <thead>
-                                                <tr>
-                                                    <th>&nbsp;ෆොටෝ &nbsp;</th>
-                                                    <th>තනතුර &nbsp;</th>
-                                                    <th>සමජිකතුමගේ නම &nbsp;</th>
-                                                    <th>ශ්‍රේණිය&nbsp;</th>
-                                                    <th>වෙනස් කිරීමට </th>
-                                                </tr>
-                                            </thead>
-
-
-                                            <tbody>
-                                                <?php while ($row = mysqli_fetch_array($result)) { ?>
-                                                    <tr>
-                                                        <td> <img src="Source Files/<?php echo $row['member_image']; ?>" style="width: 70px"/></td>
-                                                        <td><?php echo $row['member_class_name']; ?></td>
-                                                        <td><?php echo $row['member_name']; ?></td>
-                                                        <td>
-
-                                                            <?php
-                                                            if ($row['member_tittle'] == 1) {
-                                                                echo 'අධ්‍යක්ෂ මණ්ඩලය';
-                                                            } else if ($row['member_tittle'] == 2) {
-                                                                echo 'විධායක නිලධාරීන්';
-                                                            }
-                                                            ?>
-
-                                                        </td>
-                                                        <td >
-                                                            <a href="../Admin/UpdateMember.php?member_id=<?php echo $row['member_id']; ?>"  style="color: white">  <button type="button" class="btn btn-warning btn-sm ">
-                                                                    <i class="glyphicon glyphicon-edit"></i> </button>
-                                                            </a>
-                                                            <a href="Controller/MemberController.php?member_id=<?php echo $row['member_id']; ?>"  style="color: white">  <button type="button" class="btn btn-danger btn-sm ">
-                                                                    <i class="glyphicon glyphicon-trash"></i> </button>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <?php
-                                                }
-                                                ?>
-                                            </tbody>
-                                        </table>
+                                        <div class="form-group">
+                                            <input type="hidden" value="<?=$row['document_id']?>" name="document_id" id="document_id"/>
+                                            <label class="control-label col-sm-3" for="dob">ෆොටෝ  :</label>
+                                            <div class="col-sm-9">
+                                                <span id="msgdob"></span>
+                                                <input type="file" value="Source Files/<?=$row['document_image']?>" name="document_image" id="document_image"  onchange="readURL(this);"/>
+                                                <img id="blah" src="Source Files/<?=$row['document_image']?>" alt="your image" width="150px"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-3" for="lname">මාතෘකාව    :</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control required" value="<?=$row['document_title']?>" id="document_title" name="document_title" placeholder="Enter last name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-3" for="dob">ලිපිගොණු   :</label>
+                                            <div class="col-sm-9">
+                                                <span id="msgdob"></span>
+                                                <input type="file" name="document_file" id="document_file" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-3" for="dob"></label>
+                                            <div class="col-sm-6">
+                                                <input type="submit" class="btn btn-success" value="ලිපිගොනු  ඇතුලත් කිරීම"  name="AddUser"/>
+                                                <button type="reset" name="reset" class="btn btn-danger">
+                                                    <i class="glyphicon glyphicon-trash"></i>
+                                                    ඉවත් කිරීමට</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -198,20 +200,14 @@ $result = $member->viewMembers();
             </div>
             <?php include '../includes/footer.php'; ?>
         </div>
-        <!--<script src="../dist/js/jQuery-2.1.4.min.js" type="text/javascript"></script>-->
+        
+        <script src="../dist/js/jQuery-2.1.4.min.js" type="text/javascript"></script>
         <script src="../js/bootstrap.min.js"></script>
         <script src="../dist/js/app.min.js"></script>
-        <!--        <link href="../dist/js/datePicker/jquery-ui.css" rel="stylesheet" type="text/css"/>
-                <script src="../dist/js/datePicker/jquery-ui.js"></script>-->
+        <link href="../dist/js/datePicker/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <script src="../dist/js/datePicker/jquery-ui.js"></script>
+        
+       
     </body>
-    <script>
-           $(document).ready(function () {
-               $('#customer_data').DataTable({
-                   "aLengthMenu": [[3, 5, 10, 15, 20], [3, 5, 10, 15, 20]],
-                   "iDisplayLength": 10,
-                   "order": [[0, "desc"]]
-               });
-           });
-    </script> 
 
 </html>

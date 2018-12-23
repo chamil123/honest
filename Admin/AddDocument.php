@@ -156,7 +156,7 @@ if (!isset($_SESSION)) {
                                             <label class="control-label col-sm-3" for="dob">ෆොටෝ  :</label>
                                             <div class="col-sm-9">
                                                 <span id="msgdob"></span>
-                                                <input type="file" name="user_image" id="user_image" onchange="readURL(this);"/>
+                                                <input type="file" name="document_image" id="document_image" onchange="readURL(this);"/>
                                                 <img id="blah" src="../images/articles.png" alt="your image" />
                                             </div>
                                         </div>

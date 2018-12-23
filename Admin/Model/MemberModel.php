@@ -83,6 +83,15 @@ class Member {
         } else {
             return FALSE;
         }
+    }function deleteMember($member_id) {
+        global $con;
+        $sql = "DELETE FROM member WHERE member_id=$member_id";
+        $Query = mysqli_query($con, $sql);
+        if ($Query) {
+            return true;
+        } else {
+            return FALSE;
+        }
     }
 
 }

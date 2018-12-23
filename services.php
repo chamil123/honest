@@ -1,5 +1,18 @@
-<!DOCTYPE HTML>
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+error_reporting(E_ERROR || E_WARNING);
+require_once'./database/connection.php';
+include './Admin/Model/MemberModel.php';
+include './Admin/Model/NewsModel.php';
+$member = new Member();
+$news = new News();
 
+$resultNews = $news->viewNews();
+
+?>
+<!DOCTYPE HTML>
 <html>
     <head>
         <meta charset="utf-8">
@@ -408,32 +421,29 @@
                                             <div class="row">
                                                 <div class="col-xs-12">
                                                     <ul class="demo1" style="padding: 2px;">
-                                                        <li class="news-item">
-                                                            <table cellpadding="2">
-                                                                <tr>
-                                                                    <td valign="top"><img src="uploads/default.jpg" width="60" style="padding-right: 2px"/></td>
-                                                                    <td><p style="font-size: 11px;padding-left: 5px"><span style="font-weight: bold;">    2014.03.24</span> වන දින <span style="font-weight: bold;">පෙ.ව. 9.30ට</span> යෙදෙන සුභ මොහොතින් වයඹ පළාත් ප්‍රධාන අමාත්‍ය ගරු <span style="font-weight: bold;">ධර්මසිරි දසනායක</span> මැතිදුන්ගේ සුරතින් මොරගොල්ලාගම නව සමුපකාර හා ග්‍රාමීය බැංකු නව ගොඩනැගිල්ලේදී ජනතා අයිතියට පත් කිරීම....</p> <a href="#">වැඩිදුර විස්තර...</a></td>
-                                                                </tr>
-                                                            </table>
-                                                        </li>
-                                                        <li class="news-item">
-                                                            <table cellpadding="4">
-                                                                <tr>
-                                                                    <td valign="top"><img src="uploads/default.jpg" width="60"  /></td>
-                                                                    <td><p style="font-size: 11px;padding-left: 5px"><span style="font-weight: bold;">    2018.03.24</span> වන දින <span style="font-weight: bold;">පෙ.ව. 11.30 ට</span> සමිති බල ප්‍රදේශයේ <span style="font-weight: bold;">5 වසර ශිෂ්‍යත්වය සමතුන්</span> ඇගැයිමේ උළෙල වයඹ පළාත් ප්‍රධාන අමාත්‍ය ගරු <span style="font-weight: bold;">ධර්මසිරි දසනායක</span> මැතිදුන්ගේ ප්‍රධානත්වයෙන් පොල්පිතිගම ජාතික පාසල් ශ්‍රවණාගාරයේදී පැවැත්වේ..</p> <a href="#">වැඩිදුර විස්තර...</a></td>
-                                                                </tr>
-                                                            </table>
-                                                        </li>
-                                                        <li class="news-item">
-                                                            <table cellpadding="4">
-                                                                <tr>
-                                                                    <td valign="top"><img src="uploads/default.jpg" width="60"  /></td>
-                                                                    <td>
-                                                                        <span style="font-weight: bold;font-size: 12px; color: blue;;padding-left: 5px">සමුපකාරය පොදු ජනතාවගේ ව්‍යාපාරයක්</span>
-                                                                        <p style="font-size: 11px;padding-left: 5px">මිත්‍රශීලිභාවය, එකමුත බව, සමානාත්මතාව, සාමුහිකත්වය සමාජවාදී දේශපාලන සිද්ධාන්ත වලට බොහෝ සමීපයෙන් සිටින ව්‍යාපාරක් ලෙස සමුපකාර ව්‍යාපාරය ලෝකය පුරා උගතුන්ගේ සහ බුද්ධිමතුන්ගේ ..</p> <a href="#">වැඩිදුර විස්තර...</a></td>
-                                                                </tr>
-                                                            </table>
-                                                        </li>
+                                                        <?php
+                                                        while ($rowN = mysqli_fetch_array($resultNews)) {
+                                                            ?>
+                                                            <li class="news-item">
+                                                                <table cellpadding="2">
+                                                                    <tr>
+                                                                    <!--<p>sasdasdasdasd</p>-->
+                                                                    <div style="float: left;padding-right: 5px;padding-bottom: 5px;">
+                                                                        <img src="honest/Source Files/<?php echo $rowN['image']; ?>" width="150" style="padding-right: 2px"/>
+                                                                    </div>
+                                                                    <div  style="float: none;font-size: 13px;padding-left: 5px;line-height: 1.6;  ">
+                                                                        <p  class="class-span" style="margin-top: -20px;max-width: 75ch;"><?php echo $rowN['news_content']; ?> </p> 
+                                                                    </div>
+                                                                    <div style="margin-top: -20px"><a href="#">වැඩිදුර විස්තර...</a></div>
+    <!--                                                                    <td valign="top"><img src="honest/Source Files/<?php echo $rowN['image']; ?>" width="60" style="padding-right: 2px"/></td>
+                                                                        <td style=";font-size: 13px;padding-left: 5px;line-height: 1.6;"><p style="margin-top: -20px"><?php echo $rowN['news_content']; ?> </p> <a href="#">වැඩිදුර විස්තර...</a></td>-->       
+                                                                    </tr>
+                                                                </table>
+                                                            </li>
+                                                            <?php
+                                                        }
+                                                        ?>
+
                                                     </ul>
                                                 </div>
                                             </div>

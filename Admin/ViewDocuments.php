@@ -115,6 +115,8 @@ $result = $document->viewAllDocuments();
 //                            });
                     //swal("Success!", "Successfully Updated record", "success");
 
+                } else if (result == 5) {
+                    swal("Error!", "Please select file", "error");
                 }
 <?php $_SESSION['msgU'] = "" ?>
             }
@@ -167,6 +169,7 @@ $result = $document->viewAllDocuments();
                                             <thead>
                                                 <tr>
                                                     <th>&nbsp;පින්තුරය</th>
+                                                    <th>&nbsp;වර්ගය </th>
                                                     <th>&nbsp;මාතෘකාව &nbsp;</th>
 
 
@@ -178,6 +181,7 @@ $result = $document->viewAllDocuments();
                                             <tbody>
                                                 <?php while ($row = mysqli_fetch_array($result)) { ?>
                                                     <tr>
+                                                        <td><img src="Source Files/<?php echo $row['document_image']; ?>" width="100px"></td>
                                                         <td><?php
                                                             $document_file = $row['document_file'];
                                                             $str = "Hello world. It's a beautiful day.";
@@ -197,10 +201,10 @@ $result = $document->viewAllDocuments();
 
 
                                                         <td style="width: 50px">
-                                                            <a href="UpdateNews.php?news_id=<?php echo $row['document_id']; ?>"  style="color: white">  <button type="button" class="btn btn-warning btn-sm ">
+                                                            <a href="UpdatDocuments.php?document_id=<?php echo $row['document_id']; ?>"  style="color: white">  <button type="button" class="btn btn-warning btn-sm ">
                                                                     <i class="glyphicon glyphicon-edit"></i> </button>
                                                             </a>
-                                                            <a href="Controller/NewsController.php?action=delete&news_id=<?php echo $row['document_id']; ?>"  style="color: white">  <button type="button" class="btn btn-danger btn-sm ">
+                                                            <a href="Controller/DocumentController.php?action=delete&document_id=<?php echo $row['document_id']; ?>"  style="color: white">  <button type="button" class="btn btn-danger btn-sm ">
                                                                     <i class="glyphicon glyphicon-trash"></i> </button>
                                                             </a>
                                                         </td>

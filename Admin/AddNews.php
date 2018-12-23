@@ -44,14 +44,14 @@ if (!isset($_SESSION)) {
                 var result = "<?php echo $_SESSION['msgU'] ?>";
 
                 if (result == 1) {
-                     swal("Error!", "Could't Complete the request, process is Rollback", "error");
+                     swal("Success!", "Successfully Added record", "success");
                     $('.success').fadeIn(500).delay(1500).fadeOut(200);
                 } else if (result == 2) {
-                     swal("Error!", "Could't Complete the request, process is Rollback", "error");
+                     swal("Success!", "Successfully deleted record", "success");
                     $('.failure').fadeIn(500).delay(1500).fadeOut(200);
                     $('.failure').html('Successfully deleted record');
                 } else if (result == 3) {
-                     swal("Error!", "Could't Complete the request, process is Rollback", "error");
+                     swal("Success!", "Successfully Updated record", "warning");
                     $('.warning').fadeIn(500).delay(1500).fadeOut(200);
                     $('.warning').html('Successfully Updated record');
                 }
@@ -90,8 +90,8 @@ if (!isset($_SESSION)) {
                     </ol>
                 </section>
 
-                <div id="ss" class="alert-boxs  response-content " style="margin: 0px 15px 10px 15px"></div> 
-                <div class="alert alert-box success " style="margin: 0px 15px 10px 15px">Successfully added record</div>
+<!--                <div id="ss" class="alert-boxs  response-content " style="margin: 0px 15px 10px 15px"></div> 
+                <div class="alert alert-box success " style="margin: 0px 15px 10px 15px">Successfully added record</div>-->
                 <section class="content">
 
                     <form class="form-horizontal" action="Controller/NewsController.php?action=add" method="POST" enctype="multipart/form-data">

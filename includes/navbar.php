@@ -19,7 +19,7 @@ if (!isset($_SESSION)) {
 
             <li class="header" style="text-align: center">MAIN NAVIGATION </li>
             <li class="treeview">
-                <a href="Dashboard.php">
+                <a href="">
                     <i class="fas fa-tachometer-alt"></i>
 
                     <span>මුල් පිටුව</span>

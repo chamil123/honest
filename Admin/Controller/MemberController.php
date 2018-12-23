@@ -12,7 +12,7 @@ $action = $_GET['action'];
 if ($action == "add") {
     $member_class = $_POST['member_class'];
     $member_type = $_POST['member_type'];
-    $member_name= $_POST['member_name'];
+    $member_name = $_POST['member_name'];
 
     $folder = "../../uploads/";
     $file = $folder . basename($_FILES["user_image"]["name"]);
@@ -27,16 +27,16 @@ if ($action == "add") {
         $file = "../../uploads/default-user.png";
     }
     //echo 'class : '.$member_class."<br/> type : ".$member_type."<br/>  name :  ".$member_name;
-    $lastUserId = $member->addMember($member_class,$member_type, $member_name,$file);
+    $lastUserId = $member->addMember($member_class, $member_type, $member_name, $file);
     if ($lastUserId > 0) {
         $_SESSION['msgU'] = 1;
     }
     header("Location:../AddMember.php");
-}else if ($action == "update") {
+} else if ($action == "update") {
     $member_id = $_POST['member_id'];
     $member_class = $_POST['member_class'];
     $member_type = $_POST['member_type'];
-    $member_name= $_POST['member_name'];
+    $member_name = $_POST['member_name'];
 
     $folder = "../../uploads/";
     $file = $folder . basename($_FILES["user_image"]["name"]);
@@ -50,11 +50,21 @@ if ($action == "add") {
         echo 'error uploading';
         $file = "../../uploads/default-user.png";
     }
-    echo 'class : '.$member_class."<br/> type : ".$member_type."<br/>  name :  ".$member_name."<br/> id :".$member_id;
-    $lastUserId = $member->updateMember($member_id,$member_class,$member_type, $member_name,$file);
+    echo 'class : ' . $member_class . "<br/> type : " . $member_type . "<br/>  name :  " . $member_name . "<br/> id :" . $member_id;
+    $lastUserId = $member->updateMember($member_id, $member_class, $member_type, $member_name, $file);
     if ($lastUserId > 0) {
         $_SESSION['msgU'] = 3;
     }
     header("Location:../ViewMembers.php");
-} 
+} else if ($action == "delete") {
+    $member_id = $_GET['member_id'];
+
+
+    //echo 'class : '.$member_class."<br/> type : ".$member_type."<br/>  name :  ".$member_name;
+    $lastUserId = $news->deleteMember($member_id);
+    if ($lastUserId > 0) {
+        $_SESSION['msgU'] = 2;
+    }
+    header("Location:../ViewMembers.php");
+}
 ?>

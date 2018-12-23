@@ -12,15 +12,7 @@ $news = new News();
 
 $reultClass = $member->viewClass();
 $resultNews = $news->viewNews();
-//while ($row = mysqli_fetch_array($reultClass)) {
-//    //if ($row['member_class_id'] == 10) {
-//    echo '' .$row['member_class_id']." - ".$row['member_class_name'] . "<br/>";
-//    // }
-//}
-//var_dump($result);
-//if ($row['member_class_name'] == "ලේකම්") {
-//    echo 'sfsdfsdfsdfsdfsdfsdfs';
-//}
+
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -141,18 +133,20 @@ $resultNews = $news->viewNews();
             }
 
         </style> 
-        
+
     </head>
     <body>
         <script>
-          { $(".class-span").each(function(i){
-        var len=$(this).text().trim().length;
-        if(len>100)
-        {
-            $(this).text($(this).text().substr(0,100)+'...');
-        }
-    });
- });
+            {
+                $(".class-span").each(function (i) {
+                    var len = $(this).text().trim().length;
+                    if (len > 100)
+                    {
+                        $(this).text($(this).text().substr(0, 100) + '...');
+                    }
+                });
+            }
+            );
         </script>
         <div class="gtco-loader"></div>
         <div id="page">
@@ -371,7 +365,6 @@ $resultNews = $news->viewNews();
                                     <div class="panel panel-primary animate-box">
                                         <div class="panel-heading">
                                             <span class="glyphicon glyphicon-list-alt"></span><b> නැවුම් පුවත් හා සිදුවීම්</b></div>
-
                                         <div class="panel-body">
                                             <div class="row">
                                                 <div class="col-xs-12">
@@ -379,33 +372,22 @@ $resultNews = $news->viewNews();
                                                         <?php
                                                         while ($rowN = mysqli_fetch_array($resultNews)) {
                                                             ?>
-
-
                                                             <li class="news-item">
                                                                 <table cellpadding="2">
                                                                     <tr>
                                                                     <!--<p>sasdasdasdasd</p>-->
-                                      
-
-
-                                                                        <div style="float: left;padding-right: 5px;padding-bottom: 5px;">
-                                                                            <img src="honest/Source Files/<?php echo $rowN['image']; ?>" width="150" style="padding-right: 2px"/>
-                                                                        </div>
+                                                                    <div style="float: left;padding-right: 5px;padding-bottom: 5px;">
+                                                                        <img src="honest/Source Files/<?php echo $rowN['image']; ?>" width="150" style="padding-right: 2px"/>
+                                                                    </div>
                                                                     <div  style="float: none;font-size: 13px;padding-left: 5px;line-height: 1.6;  ">
-                                                                            <p  class="class-span" style="margin-top: -20px;max-width: 75ch;"><?php echo $rowN['news_content']; ?> </p> 
-                                                                        </div>
-                                                                  
-                                                                   
-
-
-                                                                        <div style="margin-top: -20px"><a href="#">වැඩිදුර විස්තර...</a></div>
-        <!--                                                                    <td valign="top"><img src="honest/Source Files/<?php echo $rowN['image']; ?>" width="60" style="padding-right: 2px"/></td>
-                                                                            <td style=";font-size: 13px;padding-left: 5px;line-height: 1.6;"><p style="margin-top: -20px"><?php echo $rowN['news_content']; ?> </p> <a href="#">වැඩිදුර විස්තර...</a></td>-->
-                                                                    
+                                                                        <p  class="class-span" style="margin-top: -20px;max-width: 75ch;"><?php echo $rowN['news_content']; ?> </p> 
+                                                                    </div>
+                                                                    <div style="margin-top: -20px"><a href="#">වැඩිදුර විස්තර...</a></div>
+    <!--                                                                    <td valign="top"><img src="honest/Source Files/<?php echo $rowN['image']; ?>" width="60" style="padding-right: 2px"/></td>
+                                                                        <td style=";font-size: 13px;padding-left: 5px;line-height: 1.6;"><p style="margin-top: -20px"><?php echo $rowN['news_content']; ?> </p> <a href="#">වැඩිදුර විස්තර...</a></td>-->       
                                                                     </tr>
                                                                 </table>
                                                             </li>
-
                                                             <?php
                                                         }
                                                         ?>
@@ -510,7 +492,7 @@ $resultNews = $news->viewNews();
                                                 }
                                             });
                                         });
-                                        
+
         </script>
     </body>
 </html>
