@@ -106,15 +106,7 @@ if (!isset($_SESSION)) {
 <?php $_SESSION['msgU'] = "" ?>
             }
 
-//            $(document).ready(function () {
-//                $('#empID').change(function () {
-//                    $.get('getCenterInfoAjax.php', {empId: $(this).val()}, function (data) {
-//
-//                        $("#centerNumber").val(data);
-//                        $("#centerid").val(data);
-//                    });
-//                });
-//            });
+
         </script>
         <div class="wrapper">
             <div style="height: 50px" >
@@ -160,7 +152,14 @@ if (!isset($_SESSION)) {
                                     </div>
                                     <div class="box-body">
 
-
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-3" for="dob">ෆොටෝ  :</label>
+                                            <div class="col-sm-9">
+                                                <span id="msgdob"></span>
+                                                <input type="file" name="user_image" id="user_image" onchange="readURL(this);"/>
+                                                <img id="blah" src="../images/articles.png" alt="your image" />
+                                            </div>
+                                        </div>
                                         <div class="form-group">
                                             <label class="control-label col-sm-3" for="lname">මාතෘකාව    :</label>
                                             <div class="col-sm-6">
@@ -193,11 +192,14 @@ if (!isset($_SESSION)) {
             </div>
             <?php include '../includes/footer.php'; ?>
         </div>
+        
         <script src="../dist/js/jQuery-2.1.4.min.js" type="text/javascript"></script>
         <script src="../js/bootstrap.min.js"></script>
         <script src="../dist/js/app.min.js"></script>
         <link href="../dist/js/datePicker/jquery-ui.css" rel="stylesheet" type="text/css"/>
         <script src="../dist/js/datePicker/jquery-ui.js"></script>
+        
+       
     </body>
 
 </html>
