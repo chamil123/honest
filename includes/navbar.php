@@ -64,9 +64,9 @@ if (!isset($_SESSION)) {
                 </a>
                 <ul class="treeview-menu">
 
-                    <li><a href="AddDocument.php"><i class="far fa-circle"></i> පුවත් ඇතුලත් කිරීම</a></li>
+                    <li><a href="AddDocument.php"><i class="far fa-circle"></i> ලිපිගොනු ඇතුලත් කිරීම</a></li>
 
-                    <li><a href="ViewDocuments.php"><i class="far fa-circle"></i> සියලුම පුවත් </a></li>
+                    <li><a href="ViewDocuments.php"><i class="far fa-circle"></i> සියලුම ලිපිගොනු </a></li>
                 </ul>
             </li>        
 

@@ -113,7 +113,6 @@ $member = new Member();
 
                 width: 110px;
 
-                //  height: 188px;
                 border-radius: 50%;
                 border: 5px solid #ffffff;
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -193,30 +192,30 @@ $member = new Member();
                             <div>
                                 <div id='cssmenu'>
                                     <ul>
-                                        <li class='active'><a   href='index.html'>මුල්</a></li>
-                                        <li ><a href='intro.html'>අප</a>
+                                        <li class='active'><a   href='index.php'>මුල්</a></li>
+                                        <li ><a href='intro.php'>අප</a>
                                             <ul>
-                                                <li><a href='intro.html'>හැදින්වීම</a>
+                                                <li><a href='intro.php'>හැදින්වීම</a>
 
                                                 </li>
-                                                <li><a href='directors.php.html'>අධ්‍යක්ෂක</a>
+                                                <li><a href='directors.php'>අධ්‍යක්ෂක</a>
 
                                                 </li>
-                                                <li><a href='directors.php.html'>විධායක</a>
+                                                <li><a href='directors.php'>විධායක</a>
 
                                                 </li>
                                             </ul>
                                         </li>
                                         <li><a href='#'>පින්තූර</a></li>
-                                        <li><a href='services.html'>විවිධ සේවා</a>
+                                        <li><a href='services.php'>විවිධ සේවා</a>
                                             <ul>
-                                                <li><a href='services.html'>බැංකු සේවා</a>
+                                                <li><a href='services.php'>බැංකු සේවා</a>
 
                                                 </li>
-                                                <li><a href='services.html'>පාරිභෝගික සේවා</a>
+                                                <li><a href='services.php'>පාරිභෝගික සේවා</a>
 
                                                 </li> 
-                                                <li><a href='services.html'>අනෙකුත් සේවා</a>
+                                                <li><a href='services.php'>අනෙකුත් සේවා</a>
 
                                                 </li>
 
@@ -224,7 +223,7 @@ $member = new Member();
                                         </li>
 
                                         <li><a href='#'>සාමාජික</a></li>
-                                        <li><a href='#'>භාගත කිරීම</a></li>
+                                        <li><a href='downloadPage.php'>භාගත කිරීම</a></li>
                                         <li><a href='#'>විමසීම්</a></li>
                                     </ul>
                                 </div>

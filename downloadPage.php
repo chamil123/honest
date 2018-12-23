@@ -4,14 +4,16 @@ if (!isset($_SESSION)) {
 }
 error_reporting(E_ERROR || E_WARNING);
 require_once'./database/connection.php';
-include './Admin/Model/MemberModel.php';
+include './Admin/Model/DocumentModel.php';
 include './Admin/Model/NewsModel.php';
 
-$member = new Member();
-$news = new News();
 
-$reultClass = $member->viewClass();
+$news = new News();
+$document = new Document();
 $resultNews = $news->viewNews();
+
+$reultDoc = $document->viewAllDocuments();
+
 //while ($row = mysqli_fetch_array($reultClass)) {
 //    //if ($row['member_class_id'] == 10) {
 //    echo '' .$row['member_class_id']." - ".$row['member_class_name'] . "<br/>";
@@ -138,22 +140,106 @@ $resultNews = $news->viewNews();
                 border: none;
                 color: #5d3250;
                 cursor: hand; cursor: pointer;
+            }/* Style the Image Used to Trigger the Modal */
+            #myImg {
+                border-radius: 5px;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+
+            #myImg:hover {opacity: 0.7;}
+
+            /* The Modal (background) */
+            .modal {
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                padding-top: 100px; /* Location of the box */
+                left: 0;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+            }
+
+            /* Modal Content (Image) */
+            .modal-content {
+                margin: auto;
+                display: block;
+                width: 80%;
+                max-width: 700px;
+            }
+
+            /* Caption of Modal Image (Image Text) - Same Width as the Image */
+            #caption {
+                margin: auto;
+                display: block;
+                width: 80%;
+                max-width: 700px;
+                text-align: center;
+                color: #ccc;
+                padding: 10px 0;
+                height: 150px;
+            }
+
+            /* Add Animation - Zoom in the Modal */
+            .modal-content, #caption { 
+                animation-name: zoom;
+                animation-duration: 0.6s;
+            }
+
+            @keyframes zoom {
+                from {transform:scale(0)} 
+                to {transform:scale(1)}
+            }
+
+            /* The Close Button */
+            .close {
+                position: absolute;
+                top: 15px;
+                right: 35px;
+                color: #f1f1f1;
+                font-size: 40px;
+                font-weight: bold;
+                transition: 0.3s;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: #bbb;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+            /* 100% Image Width on Smaller Screens */
+            @media only screen and (max-width: 700px){
+                .modal-content {
+                    width: 100%;
+                }
             }
 
         </style> 
-        
+
     </head>
     <body>
         <script>
-          { $(".class-span").each(function(i){
-        var len=$(this).text().trim().length;
-        if(len>100)
-        {
-            $(this).text($(this).text().substr(0,100)+'...');
-        }
-    });
- });
+            {
+                $(".class-span").each(function (i) {
+                    var len = $(this).text().trim().length;
+                    if (len > 100)
+                    {
+                        $(this).text($(this).text().substr(0, 100) + '...');
+                    }
+                });
+            }
+            );
+
+
         </script>
+
+
         <div class="gtco-loader"></div>
         <div id="page">
             <div class="page-inner">
@@ -234,136 +320,52 @@ $resultNews = $news->viewNews();
                         </div>
                     </nav>
                 </div>
-                <div class="row" style=" height: 570px; " >
-                    <div id='hislider1' style="z-index: -1; width:auto;  max-height:570px;height:100%; margin-top: 0px;padding:0px">
-                    </div>
+                <div class="row" style=" height: 30px; " >
+
                 </div>
                 <div class="overflow-hid"  style=";margin-top: -90px"> 
                     <div class="gtco-section">
                         <div class="gtco-container">
                             <div class="row" >
-                                <div class="col-lg-4 col-md-4 col-sm-6 animate-box" >
-                                    <a href="intro.html" id="1" onClick="reply_click(this.id)" class="gtco-card-item">
-                                        <figure>
-                                            <div class="overlay"><i class="ti-plus"></i></div>
-                                            <div style="background-color: #41AFDC;height: 240px;border-bottom: 6px solid #228CB7">
-                                                <div  class=" box_heading_icon">
-                                                    <i class="fa fa-eye"></i>
-                                                </div>
-                                                <p class="box_heading">දර්ශනය</p>
-                                                <div class="gtco-text">
-                                                    <p class="box_content">තිරසාර සංවර්ධනය තුලින් වයඹ පළාතේ විශිෂ්ඨතම සමුපාකාර ව්‍යවසායකයා වීම...</p>
-                                                </div>
-                                            </div>
-                                        </figure>
-                                        <div class="gtco-text">
 
-                                            <p><span class="btn btn-primary">වැඩිදුර කියවන්න</span></p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-6 animate-box">
-                                    <a href="intro.html" class="gtco-card-item">
-                                        <figure>
-                                            <div class="overlay"><i class="ti-plus"></i></div>
-                                            <div style="background-color: #41C5DC;height: 240px;border-bottom: 6px solid #1B96AC">
-                                                <div  class=" box_heading_icon">
-                                                    <i class="fa fa-bullseye  " ></i>
-                                                </div>
-                                                <p class="box_heading">මෙහෙවර</p>
-                                                <div class="gtco-text">
-                                                    <p class="box_content">සාමාජික, සේවක ප්‍රජාව පෙරටු කර ගනිමින් ඔවුන්ගේ  අවශ්‍යතා, උවමනා, අපේක්ෂාවන් ඉටු කරමින් ..</p>
-                                                </div>
-                                            </div>
-                                        </figure>
-                                        <div class="gtco-text">
-                                            <p><span class="btn btn-primary">වැඩිදුර කියවන්න</span></p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-6 animate-box">
-                                    <a href="intro.html" class="gtco-card-item">
-                                        <figure>
-                                            <div class="overlay"><i class="ti-plus"></i></div>
-                                            <div style="background-color: #0171B7;height: 240px;border-bottom: 6px solid #015285">
-                                                <div  class=" box_heading_icon">
-                                                    <i class="fa fa-location-arrow"></i>
-                                                </div>
-                                                <p class="box_heading">හැඳින්වීම</p>
-                                                <div class="gtco-text">
-                                                    <p class="box_content" style="font-size: 0.9em">වයඹ පළාතේ කුරුණෑගල දිස්ත්‍රීක්කයේ පොල්පිතිගම ප්‍රාදේශීය ලේකම් කොට්ඨාශය ආවරණය වන බල ප්‍රදේශය සී/ස පොල්පිතිගම ..</p>
-                                                </div>
-                                            </div>
-                                        </figure>
-                                        <div class="gtco-text">
-                                            <p><span class="btn btn-primary">වැඩිදුර කියවන්න</span></p>
-                                        </div>
-                                    </a>
-                                </div>
                             </div>
                         </div>
                     </div>
-                    <div id="gtco-features">
+                    <div >
                         <div class="gtco-container">
+                            <p style="padding-bottom: 10px;font-size: 19px;color: blue">භාගතකිරීම</p>
                             <div class="row" style="margin-top: -20px">
+
                                 <div class="col-md-8 col-sm-3" >
                                     <div class=" animate-box" data-animate-effect="fadeIn">
-                                        <div class="col-md-12 animate-box gtco-card-item" style="height: 145px; background-color: #ffffff;padding-top: 10px">
-                                            <?php
-                                            $result = $member->viewMembers();
-                                            while ($row = mysqli_fetch_array($result)) {
-                                                if ($row['member_class_id'] == 1) {
-                                                    ?>
-                                                    <div class="col-md-3" style="padding-top: 5px">
-                                                        <img src="Source Files/Uploads/<?php echo $row['member_image']; ?>" class="user-image"  />
+
+                                        <div class="col-md-12">
+
+
+                                            <div class=row>
+                                                <?php while ($rowD = mysqli_fetch_assoc($reultDoc)) { ?>
+
+                                                    <div class="col-md-4" style="padding-bottom: -20px;" >
+                                                        <div class="thumbnail">
+                                                            <img id="myImg" class="img-thumbnail image-responsive rounded" src="images/001_170x238_77a1602b0f97d2bc19c9fae0cda046d2.jpg" style=" display:block;
+                                                                 margin:auto;height:250px;marging:0px;padding:0px; ">
+                                                            <div class="caption">
+                                                                <h5 style="padding: 5px"><?=$rowD['document_title']?></h5>
+                                                                <?php
+                                                                $doc_path=$rowD['document_file'];
+                                                               $file_name=explode("/",$doc_path);
+                                                                   // echo 'sfdf ;'.$aa[3];
+                                                                    
+                                                                ?>
+                                                                <p style="margin-top: -20px;"><a href="download.php?nama=<?=$file_name[3]?>" class="btn btn-danger  btn-block" role="button">Download</a> </p>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-md-8" style="padding-top: 35px">
-                                                        <h3 style="color: #000000"><?php echo $row['member_class_name']; ?> </h3>
-                                                        <p style="margin-top: -10px;color: #000000"><?php echo $row['member_name']; ?></p>
-                                                    </div>
+                                                   
                                                     <?php
                                                 }
-                                            }
-                                            ?>
-                                        </div>
-                                        <div class="col-md-12 animate-box gtco-card-item" style="height: 145px; background-color: #ffffff;padding-top: 10px">
-                                            <?php
-                                            $result1 = $member->viewMembers();
-                                            while ($row1 = mysqli_fetch_array($result1)) {
-
-                                                if ($row1['member_class_id'] == 6) {
-                                                    ?>
-                                                    <div class="col-md-3" style="padding-top: 5px">
-                                                        <img src="Source Files/Uploads/<?php echo $row1['member_image']; ?>" class="user-image"  />   
-                                                    </div>
-                                                    <div class="col-md-8" style="padding-top: 35px">
-                                                        <h3 style="color: #000000"><?php echo $row1['member_class_name']; ?> </h3>         
-                                                        <p style="margin-top: -10px;color: #000000"><?php echo $row1['member_name']; ?></p>
-                                                    </div>
-                                                    <?php
-                                                }
-                                            }
-                                            ?>
-                                        </div>
-                                        <div class="col-md-12 animate-box gtco-card-item" style="height: 145px; background-color: #ffffff;padding-top: 10px">
-                                            <?php
-                                            $result2 = $member->viewMembers();
-                                            while ($row2 = mysqli_fetch_array($result2)) {
-                                                if ($row2['member_class_id'] == 5) {
-                                                    ?>
-                                                    <div class="col-md-3" style="padding-top: 5px">
-
-                                                        <img src="Source Files/Uploads/<?php echo $row2['member_image']; ?>" class="user-image"  /> 
-
-                                                    </div>
-                                                    <div class="col-md-8" style="padding-top: 35px">
-                                                        <h3 style="color: #000000"><?php echo $row2['member_class_name']; ?>  </h3>
-                                                        <p style="margin-top: -10px;color: #000000"><?php echo $row2['member_name']; ?></p>
-                                                    </div>
-                                                    <?php
-                                                }
-                                            }
-                                            ?>
+                                                ?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -385,23 +387,23 @@ $resultNews = $news->viewNews();
                                                                 <table cellpadding="2">
                                                                     <tr>
                                                                     <!--<p>sasdasdasdasd</p>-->
-                                      
 
 
-                                                                        <div style="float: left;padding-right: 5px;padding-bottom: 5px;">
-                                                                            <img src="honest/Source Files/<?php echo $rowN['image']; ?>" width="150" style="padding-right: 2px"/>
-                                                                        </div>
+
+                                                                    <div style="float: left;padding-right: 5px;padding-bottom: 5px;">
+                                                                        <img src="honest/Source Files/<?php echo $rowN['image']; ?>" width="150" style="padding-right: 2px"/>
+                                                                    </div>
                                                                     <div  style="float: none;font-size: 13px;padding-left: 5px;line-height: 1.6;  ">
-                                                                            <p  class="class-span" style="margin-top: -20px;max-width: 75ch;"><?php echo $rowN['news_content']; ?> </p> 
-                                                                        </div>
-                                                                  
-                                                                   
+                                                                        <p  class="class-span" style="margin-top: -20px;max-width: 75ch;"><?php echo $rowN['news_content']; ?> </p> 
+                                                                    </div>
 
 
-                                                                        <div style="margin-top: -20px"><a href="#">වැඩිදුර විස්තර...</a></div>
-        <!--                                                                    <td valign="top"><img src="honest/Source Files/<?php echo $rowN['image']; ?>" width="60" style="padding-right: 2px"/></td>
-                                                                            <td style=";font-size: 13px;padding-left: 5px;line-height: 1.6;"><p style="margin-top: -20px"><?php echo $rowN['news_content']; ?> </p> <a href="#">වැඩිදුර විස්තර...</a></td>-->
-                                                                    
+
+
+                                                                    <div style="margin-top: -20px"><a href="#">වැඩිදුර විස්තර...</a></div>
+    <!--                                                                    <td valign="top"><img src="honest/Source Files/<?php echo $rowN['image']; ?>" width="60" style="padding-right: 2px"/></td>
+                                                                        <td style=";font-size: 13px;padding-left: 5px;line-height: 1.6;"><p style="margin-top: -20px"><?php echo $rowN['news_content']; ?> </p> <a href="#">වැඩිදුර විස්තර...</a></td>-->
+
                                                                     </tr>
                                                                 </table>
                                                             </li>
@@ -476,8 +478,16 @@ $resultNews = $news->viewNews();
                 </div>
             </div>
         </div>
+
+
         <div class="gototop js-top">
             <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+        </div>
+
+        <div id="myModal" class="modal" >
+            <span class="close">&times;</span>
+            <img class="modal-content" id="img01" style="width: 300px;margin-top: 100px">
+            <div id="caption"></div>
         </div>
         <!-- jQuery -->
         <!-- jQuery Easing -->
@@ -498,20 +508,46 @@ $resultNews = $news->viewNews();
         <!-- Main -->
         <script src="js/main.js"></script>
         <script type="text/javascript">
-                                        $(function () {
-                                            $(".demo1").bootstrapNews({
-                                                newsPerPage: 2,
-                                                autoplay: true,
-                                                pauseOnHover: true,
-                                                direction: 'up',
-                                                newsTickerInterval: 4000,
-                                                onToDo: function () {
-                                                    //console.log(this);
-                                                }
-                                            });
-                                        });
-                                        
+            $(function () {
+                $(".demo1").bootstrapNews({
+                    newsPerPage: 2,
+                    autoplay: true,
+                    pauseOnHover: true,
+                    direction: 'up',
+                    newsTickerInterval: 4000,
+                    onToDo: function () {
+                        //console.log(this);
+                    }
+                });
+            });
+
         </script>
+        <script>
+// Get the modal
+            var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+            var img = document.getElementById('myImg');
+            var modalImg = document.getElementById("img01");
+            var captionText = document.getElementById("caption");
+            img.onclick = function () {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+            }
+
+// Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+        </script>
+
+
+
+
     </body>
 </html>
 

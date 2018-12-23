@@ -74,6 +74,14 @@
 
         <script src="scripts/jquery.bootstrap.newsbox.min.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+    function reply_click(clicked_id)
+{
+    alert(clicked_id);
+}
+</script>
+
+
         <style>
             #hislider1{
                 height:100%; 
@@ -103,8 +111,6 @@
             } .user-image {
 
                 width: 110px;
-
-                //  height: 188px;
                 border-radius: 50%;
                 border: 5px solid #ffffff;
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -164,7 +170,6 @@
 
             p, li {
                  line-height: 27px;
-
             }
 
             body {
@@ -222,7 +227,23 @@
                 border-radius: 3px;
                 margin-bottom: 20px;
                 position: relative;
+            }.objective2 {
+                padding: 10px;
+                background: #ffcdcd;
+                color: #884400;
+                border: 1px solid;
+                border-radius: 3px;
+                margin-bottom: 20px;
+                position: relative;
             }
+
+
+
+
+
+
+
+
 
         </style> 
     </head>
@@ -248,7 +269,7 @@
                                                 </div>
                                             </div>	
                                         </div>-->
-                   <nav class="gtco-nav sticky-banner" role="navigation" style="height: 46px;padding: 0px">
+                  <nav class="gtco-nav sticky-banner" role="navigation" style="height: 46px;padding: 0px">
                         <div class="gtco-container">
                             <div style="height: 90px;background-color: #FFF; background: rgba(255,255,255,0.85); ">
                                 <div class="col-md-1" style="padding-left: 15px;padding-top: 4px">
@@ -275,30 +296,30 @@
                             <div>
                                 <div id='cssmenu'>
                                     <ul>
-                                        <li class='active'><a   href='index.html'>මුල්</a></li>
-                                        <li ><a href='intro.html'>අප</a>
+                                        <li class='active'><a   href='index.php'>මුල්</a></li>
+                                        <li ><a href='intro.php'>අප</a>
                                             <ul>
-                                                <li><a href='intro.html'>හැදින්වීම</a>
+                                                <li><a href='intro.php'>හැදින්වීම</a>
 
                                                 </li>
-                                                <li><a href='directors.php.html'>අධ්‍යක්ෂක</a>
+                                                <li><a href='directors.php'>අධ්‍යක්ෂක</a>
 
                                                 </li>
-                                                <li><a href='directors.php.html'>විධායක</a>
+                                                <li><a href='directors.php'>විධායක</a>
 
                                                 </li>
                                             </ul>
                                         </li>
                                         <li><a href='#'>පින්තූර</a></li>
-                                        <li><a href='services.html'>විවිධ සේවා</a>
+                                        <li><a href='services.php'>විවිධ සේවා</a>
                                             <ul>
-                                                <li><a href='services.html'>බැංකු සේවා</a>
+                                                <li><a href='services.php'>බැංකු සේවා</a>
 
                                                 </li>
-                                                <li><a href='services.html'>පාරිභෝගික සේවා</a>
+                                                <li><a href='services.php'>පාරිභෝගික සේවා</a>
 
                                                 </li> 
-                                                <li><a href='services.html'>අනෙකුත් සේවා</a>
+                                                <li><a href='services.php'>අනෙකුත් සේවා</a>
 
                                                 </li>
 
@@ -306,7 +327,7 @@
                                         </li>
 
                                         <li><a href='#'>සාමාජික</a></li>
-                                        <li><a href='#'>භාගත කිරීම</a></li>
+                                        <li><a href='downloadPage.php'>භාගත කිරීම</a></li>
                                         <li><a href='#'>විමසීම්</a></li>
                                     </ul>
                                 </div>
@@ -363,44 +384,73 @@
                                 <div class="col-md-8 col-sm-3" >
                                    <!--start new content-->
 
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 objective">
+                                        <div itemprop="articleBody">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 vision">
+                                            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"> </div>
+                                                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                                                    <h3>අපේ දැක්ම</h3>
+                                                    <p>තිරසර සංවර්ධනය තුලින් වයඹ පළාතේ විශිෂ්ඨතම සමූපකාර ව්‍යවසායකයා වීම.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mission">
+                                            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12" style="text-align: justify;"> </div>
+                                                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                                                    <h3 style="text-align: justify;">අපේ මෙහෙවර</h3>
+                                                    <p style="text-align: justify;">සාමාජික, සේවක ප්‍රජාව පෙරටු කර ගනිමින් ඔවුන්ගේ අවශ්‍යතා, උවමනා, අපේක්ෂාවන් ඉටු කරමින් මනා කළමණාකාරිත්වයකින් ආයතනික සම්පත් ඵලදායී ලෙස මෙහෙය වීම.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 objective">
+                                            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"> </div>
+                                                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                                                    <h3 style="text-align: justify;">අප ගැන හැදින්වීම.</h3>
+                                                    <p>වයඹ පළාතේ කුරුණෑගල දිස්ත්‍රීක්කයේ පොල්පිතිගම ප්‍රාදේශීය ලේකම් කොට්ඨාශය ආවරණය වන බල ප්‍රදේශය සී/ස  පොල්පිතිගම විවිධ සේවා සමූපකාර සමිති බල ප්‍රදේශය වේ.</p>
+                                                     <p> 1972 අංක 5 දරණ සමූපකාර පනතට අනුව 1989-03-22 වන දින කු/1903 යටතේ සාමාජික මහතුන් 28 දෙනෙකුගෙන් හා එවකට සමුපකාර සංවර්ධන කොමසාරිස් රංජිත් වෛද්‍යතිලක මහතාගේ මැදිහත් වීම මත මෙම සමිතිය ලියාපදිංචි කරනු ලැබ කුළී පදනම මත ගොඩනැගිල්ලක පවත්වාගෙන යමින් පසුකාලීනව ප්‍රධාන  කාර්යාලය පොල්පිතිගම නගර මධ්‍යයේ සාදා නිමකල තෙමහල් ගොඩ නැගිල්ලේ දෙවනි මහලේ හා තෙවන මහලේ පිහිටා ඇත. </p>
+                                                    <p>බිම් මහල තුල කෝප් සිටි වෙළද මධ්‍යස්ථානය, රක‍ෂණ සේවා අංශය, ලීසිං සේවා අංශය,කෝප් කොමියුණිකේෂන් අංශය, හා ග්‍රාමීය බැංකුව වන වානිජ මධ්‍යස්ථාන පිහිටා ඇත. මීට අමතරව තොග අංශය ඉන්ධන පිරවුම්හල, කෝප් පැකින් සෙන්ටර්, මල් ශාලාව, පොල්පිතිගම නගරයේ පිහිටා තිඛෙන අතර අනෙකුත් ග්‍රාමීය බැංකු ශාඛා 12ක්, කෝප් සිටි 01,මිණි කෝප් සිටි 10ක් සිල්ලර අලෙවි සැල් 07ක් හා සංචාරක වෙළ`ද අංශයක් සමිති බල ප්‍රදේශය ආවරණය වන අයුරින් ස්ථාන ගතව ඇත.</P>
+                                                </div>
+                                            </div> 
+
+                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 objective2">
                                         <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"> </div>
                                             <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                                            <h2 style="text-align: justify;">අපගේ සියලුම සේවාවන්.</h2>
-                                            <h3 style="text-align: justify;">අපගේ බැංකු සේවාවන්.</h3>
+                                            <h4 style="text-align: justify;">සමුපකාර ප්‍රතිපත්ති .</h4>
                                             <ul>
-                                            <li> ආකර්ෂණීය තැන්පත් පොලී</li>
-                                            <li>රන් සුරැකුම් උකස් සේවාව</li>
-                                            <li>විදේශ මුදල් හුවමාරුව</li>
-                                            <li>ක්ෂණික ණය</li>
-                                            <li>කෘෂි කාර්මික ණය</li>
-                                            <li>වෙළද ව්‍යාපාරික ණය</li>
-                                            <li>විශේෂ ව්‍යාපෘති ණය (කිරි ගව, විදුලි, කර්මාන්ත)</li>
-                                            <li>රාජ්‍ය සේවක ණය</li>
-                                            <li>ජනදිරිය සාමාජික සංවර්ධන වැඩසටහන්</li>
+                                                <li>ස්වෙච්ජා හා විවෘත සාමාජිකත්වය.</li>
+                                                <li>ප‍්‍රජාතන්ත‍්‍රවාදී පාලනය.</li>
+                                                <li>සාමාජිකයන්ගේ ආර්ථික සහභාගිත්වය.</li>
+                                                <li>ස්වරී භාවය හා නිදහස.</li>
+                                                <li>අධ්‍යාපනය, පුහුණුව හා තොරතුරු.</li>
+                                                <li>සමූපකාර සංවිධාන අතර සහයෝගීතාවය.</li>
+                                                <li>ප‍්‍රජාව පිළිබඳ සැලකිලිමත් වීම.</li>
                                             </ul>
 
-                                            <h3 style="text-align: justify;">අපගේ අනෙකුත් සේවා ජලය.</h3>
+                                            <h4 style="text-align: justify;">සමුපකාර සාරධර්ම හා ආචාරධර්ම.</h4>
+                                            <h5 style="text-align: justify;">සමුපකාර ආචාරධර්ම.</h5>
                                             <ul>
-                                            <li>කෝප් සිටි, මිනි කෝප් සිටි</li>
-                                            <li>පාරිභෝගික සේවා අංශය</li>
-                                            <li>සමුපකාර රක්ෂණ අංශය</li>
-                                            <li>සමුපකාර ලීසිං අංශය (ගමට ලීසිං)</li>
-                                            <li>ඉන්ධන සැපයුම් සේවා අංශය</li>
-                                            <li>අලෙවි නියෝජිත සේවා</li>
-                                            <li>අවමංගල්‍ය සේවා අංශය</li>
-                                            <li>ඉන්ධන ප්‍රවාහන සේවා කටයුතු</li>
-                                            <li>ප්‍රවාහන සේවා අංශය</li>
-                                            <li>කෘෂි කාර්මික සේවා අංශය</li>
+                                                <li>අවංකභාවය.</li>
+                                                <li>විවෘතභාවය.</li>
+                                                <li>සමාජ වගකීම.</li>
+                                                <li>පරෝපකාරය. (අන්‍යයන් රැකබලා ගැනීම)</li>
+                                            </ul>
+                                            
+                                            <h5 style="text-align: justify;">සමුපකාර සාරධර්ම.</h5>
+                                            <ul>
+                                                <li>ප‍්‍රජාතන්ත‍්‍රවාදය.</li>
+                                                <li>සමානාත්මතාවය.</li>
+                                                <li>සහයෝගීතාවය.</li>
+                                                <li>සාධාරණත්වය.</li>
+                                                <li>ආත්මාධාරය.</li>
+                                                <li>ස්වයං වගකීම</li>
                                             </ul>
                                             </div>
                                         </div> 
 
+                                        </div>
+
+
                                    <!--end new content-->
                                 </div>
-                              
 
-    <div class="col-md-4">
+                            <div class="col-md-4">
                                     <div class="panel panel-primary animate-box">
                                         <div class="panel-heading">
                                             <span class="glyphicon glyphicon-list-alt"></span><b> නැවුම් පුවත් හා සිදුවීම්</b></div>
@@ -444,7 +494,6 @@
                                         </div>
                                     </div>
                                 </div>
-
 
                             </div>
                         </div>
