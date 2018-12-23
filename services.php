@@ -10,7 +10,6 @@ $member = new Member();
 $news = new News();
 
 $resultNews = $news->viewNews();
-
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -77,11 +76,7 @@ $resultNews = $news->viewNews();
 
 
         <script type="text/javascript" src="sliderengine/jquery.hislider.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
-
-
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
         <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
         <link href="css/site.css" rel="stylesheet" type="text/css" />
 
@@ -175,7 +170,7 @@ $resultNews = $news->viewNews();
             }
 
             p, li {
-                 line-height: 27px;
+                line-height: 27px;
 
             }
 
@@ -184,15 +179,15 @@ $resultNews = $news->viewNews();
                 font-family: 'Roboto', sans-serif, Malithi Web;
                 font-weight: 200;
                 /* letter-spacing: 0.5px; */
-                }
+            }
 
             body, h1, h2, h3, h4, h5 {
                 font-family: "Malithi Web", Arial, Helvetica, sans-serif !important;
-                }
+            }
 
-                body {
+            body {
                 color: #2c2c2c !important;
-                }
+            }
             body {
                 line-height: 1.42857143;
                 color: #000;
@@ -205,7 +200,7 @@ $resultNews = $news->viewNews();
             h3 {
                 font-size: 125%;
             }
-           
+
             h1, h2, h3, h4, h5 {
                 letter-spacing: 1px !important;
                 font-family: 'Roboto', sans-serif, Malithi Web;
@@ -260,7 +255,7 @@ $resultNews = $news->viewNews();
                                                 </div>
                                             </div>	
                                         </div>-->
-                   <nav class="gtco-nav sticky-banner" role="navigation" style="height: 46px;padding: 0px">
+                    <nav class="gtco-nav sticky-banner" role="navigation" style="height: 46px;padding: 0px">
                         <div class="gtco-container">
                             <div style="height: 90px;background-color: #FFF; background: rgba(255,255,255,0.85); ">
                                 <div class="col-md-1" style="padding-left: 15px;padding-top: 4px">
@@ -282,7 +277,9 @@ $resultNews = $news->viewNews();
                                         </div>
                                     </form>
                                 </div>
-
+                                <div class="row" >
+                                    <a href="Admin/index.php" style="color: #777;font-size: 28px;"><i class="far fa-user-circle"></i><span style="font-size: 14px"> Staff portal</span></a>
+                                </div>
                             </div>
                             <div>
                                 <div id='cssmenu'>
@@ -345,7 +342,7 @@ $resultNews = $news->viewNews();
 
                 <div class="row" style=" height: 570px; " >
 
-                     <div id='hislider1' style="z-index: -1; width:auto;  max-height:570px;height:100%; margin-top: 0px;padding:0px">        
+                    <div id='hislider1' style="z-index: -1; width:auto;  max-height:570px;height:100%; margin-top: 0px;padding:0px">        
 
                     </div>
 
@@ -373,46 +370,46 @@ $resultNews = $news->viewNews();
 
                             <div class="row">
                                 <div class="col-md-8 col-sm-3" >
-                                   <!--start new content-->
+                                    <!--start new content-->
 
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 objective">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 objective">
                                         <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"> </div>
-                                            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                                        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
                                             <h2 style="text-align: justify;">අපගේ සියලුම සේවාවන්.</h2>
                                             <h3 style="text-align: justify;">අපගේ බැංකු සේවාවන්.</h3>
                                             <ul>
-                                            <li> ආකර්ෂණීය තැන්පත් පොලී</li>
-                                            <li>රන් සුරැකුම් උකස් සේවාව</li>
-                                            <li>විදේශ මුදල් හුවමාරුව</li>
-                                            <li>ක්ෂණික ණය</li>
-                                            <li>කෘෂි කාර්මික ණය</li>
-                                            <li>වෙළද ව්‍යාපාරික ණය</li>
-                                            <li>විශේෂ ව්‍යාපෘති ණය (කිරි ගව, විදුලි, කර්මාන්ත)</li>
-                                            <li>රාජ්‍ය සේවක ණය</li>
-                                            <li>ජනදිරිය සාමාජික සංවර්ධන වැඩසටහන්</li>
+                                                <li> ආකර්ෂණීය තැන්පත් පොලී</li>
+                                                <li>රන් සුරැකුම් උකස් සේවාව</li>
+                                                <li>විදේශ මුදල් හුවමාරුව</li>
+                                                <li>ක්ෂණික ණය</li>
+                                                <li>කෘෂි කාර්මික ණය</li>
+                                                <li>වෙළද ව්‍යාපාරික ණය</li>
+                                                <li>විශේෂ ව්‍යාපෘති ණය (කිරි ගව, විදුලි, කර්මාන්ත)</li>
+                                                <li>රාජ්‍ය සේවක ණය</li>
+                                                <li>ජනදිරිය සාමාජික සංවර්ධන වැඩසටහන්</li>
                                             </ul>
 
                                             <h3 style="text-align: justify;">අපගේ අනෙකුත් සේවා ජලය.</h3>
                                             <ul>
-                                            <li>කෝප් සිටි, මිනි කෝප් සිටි</li>
-                                            <li>පාරිභෝගික සේවා අංශය</li>
-                                            <li>සමුපකාර රක්ෂණ අංශය</li>
-                                            <li>සමුපකාර ලීසිං අංශය (ගමට ලීසිං)</li>
-                                            <li>ඉන්ධන සැපයුම් සේවා අංශය</li>
-                                            <li>අලෙවි නියෝජිත සේවා</li>
-                                            <li>අවමංගල්‍ය සේවා අංශය</li>
-                                            <li>ඉන්ධන ප්‍රවාහන සේවා කටයුතු</li>
-                                            <li>ප්‍රවාහන සේවා අංශය</li>
-                                            <li>කෘෂි කාර්මික සේවා අංශය</li>
+                                                <li>කෝප් සිටි, මිනි කෝප් සිටි</li>
+                                                <li>පාරිභෝගික සේවා අංශය</li>
+                                                <li>සමුපකාර රක්ෂණ අංශය</li>
+                                                <li>සමුපකාර ලීසිං අංශය (ගමට ලීසිං)</li>
+                                                <li>ඉන්ධන සැපයුම් සේවා අංශය</li>
+                                                <li>අලෙවි නියෝජිත සේවා</li>
+                                                <li>අවමංගල්‍ය සේවා අංශය</li>
+                                                <li>ඉන්ධන ප්‍රවාහන සේවා කටයුතු</li>
+                                                <li>ප්‍රවාහන සේවා අංශය</li>
+                                                <li>කෘෂි කාර්මික සේවා අංශය</li>
                                             </ul>
-                                            </div>
-                                        </div> 
+                                        </div>
+                                    </div> 
 
-                                   <!--end new content-->
+                                    <!--end new content-->
                                 </div>
-                              
 
-    <div class="col-md-4">
+
+                                <div class="col-md-4">
                                     <div class="panel panel-primary animate-box">
                                         <div class="panel-heading">
                                             <span class="glyphicon glyphicon-list-alt"></span><b> නැවුම් පුවත් හා සිදුවීම්</b></div>
@@ -499,8 +496,8 @@ $resultNews = $news->viewNews();
                                 <div class="gtco-widget">
                                     <h3>සම්බන්ද වෙන්න</h3>
                                     <ul class="gtco-quick-contact">
-                                       <li><a href="#"><i class="icon-phone"></i> 037 22 73091</a></li>
-                                         <li><a href="#"><i class="icon-phone"></i> 037 57 35911</a></li>
+                                        <li><a href="#"><i class="icon-phone"></i> 037 22 73091</a></li>
+                                        <li><a href="#"><i class="icon-phone"></i> 037 57 35911</a></li>
 
                                     </ul>
                                 </div>

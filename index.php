@@ -12,7 +12,6 @@ $news = new News();
 
 $reultClass = $member->viewClass();
 $resultNews = $news->viewNews();
-
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -65,7 +64,7 @@ $resultNews = $news->viewNews();
         <script src="js/respond.min.js"></script>
         <![endif]-->
         <script type="text/javascript" src="sliderengine/jquery.hislider.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
         <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
         <link href="css/site.css" rel="stylesheet" type="text/css" />
         <script src="scripts/jquery.bootstrap.newsbox.min.js" type="text/javascript"></script>
@@ -185,6 +184,9 @@ $resultNews = $news->viewNews();
                                             <input class="searchsubmit" type="submit" id="searchsubmit" value="">
                                         </div>
                                     </form>
+                                </div>
+                                <div class="row" >
+                                    <a href="Admin/index.php" style="color: #777;font-size: 28px;"><i class="far fa-user-circle"></i><span style="font-size: 14px"> Staff portal</span></a>
                                 </div>
                             </div>
                             <div>

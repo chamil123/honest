@@ -19,9 +19,9 @@ $resultNews = $news->viewNews();
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>පොල්පිතිගම විවිද සේවා සමුපකාර සමිතිය</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--        <meta name="description" content="Free HTML5 Website Template by GetTemplates.co" />
-        <meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-        <meta name="author" content="GetTemplates.co" />-->
+        <!--        <meta name="description" content="Free HTML5 Website Template by GetTemplates.co" />
+                <meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
+                <meta name="author" content="GetTemplates.co" />-->
 
         <!-- Facebook and Twitter integration -->
         <meta property="og:title" content=""/>
@@ -65,7 +65,7 @@ $resultNews = $news->viewNews();
         <script src="js/modernizr-2.6.2.min.js"></script>
 
         <script type="text/javascript" src="sliderengine/jquery.hislider.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
         <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
         <link href="css/site.css" rel="stylesheet" type="text/css" />
 
@@ -279,7 +279,9 @@ $resultNews = $news->viewNews();
                                         </div>
                                     </form>
                                 </div>
-
+                                <div class="row" >
+                                    <a href="Admin/index.php" style="color: #777;font-size: 28px;"><i class="far fa-user-circle"></i><span style="font-size: 14px"> Staff portal</span></a>
+                                </div>
                             </div>
                             <div>
                                 <div id='cssmenu'>
@@ -569,20 +571,20 @@ $resultNews = $news->viewNews();
         <!-- Main -->
         <script src="js/main.js"></script>
         <script type="text/javascript">
-    $(function () {
-        $(".demo1").bootstrapNews({
-            newsPerPage: 3,
-            autoplay: true,
-            pauseOnHover: true,
-            direction: 'up',
-            newsTickerInterval: 4000,
-            onToDo: function () {
-                //console.log(this);
-            }
-        });
+            $(function () {
+                $(".demo1").bootstrapNews({
+                    newsPerPage: 3,
+                    autoplay: true,
+                    pauseOnHover: true,
+                    direction: 'up',
+                    newsTickerInterval: 4000,
+                    onToDo: function () {
+                        //console.log(this);
+                    }
+                });
 
 
-    });
+            });
         </script>
     </body>
 </html>

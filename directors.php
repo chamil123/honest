@@ -10,7 +10,6 @@ $member = new Member();
 $news = new News();
 
 $resultNews = $news->viewNews();
-
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -77,11 +76,7 @@ $resultNews = $news->viewNews();
 
 
         <script type="text/javascript" src="sliderengine/jquery.hislider.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
-
-
+         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
         <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
         <link href="css/site.css" rel="stylesheet" type="text/css" />
 
@@ -191,7 +186,9 @@ $resultNews = $news->viewNews();
                                         </div>
                                     </form>
                                 </div>
-
+                                <div class="row" >
+                                    <a href="Admin/index.php" style="color: #777;font-size: 28px;"><i class="far fa-user-circle"></i><span style="font-size: 14px"> Staff portal</span></a>
+                                </div>
                             </div>
                             <div>
                                 <div id='cssmenu'>
@@ -266,7 +263,7 @@ $resultNews = $news->viewNews();
                                     while ($row = mysqli_fetch_array($result)) {
                                         if ($row['member_class_type'] == 1) {
                                             ?>
-                                    
+
                                             <div class="col-lg-4  text-center mb-4" style="height: 200px">
                                                 <img class="rounded-circle img-fluid d-block mx-auto" src="Source Files/Uploads/<?php echo $row['member_image']; ?>" width="90px" alt=""/>
                                                 <h4><?php echo $row['member_class_name']; ?>
@@ -381,7 +378,7 @@ $resultNews = $news->viewNews();
                                         <div class="panel-body">
                                             <div class="row">
                                                 <div class="col-xs-12">
-                                                     <ul class="demo1" style="padding: 2px;">
+                                                    <ul class="demo1" style="padding: 2px;">
                                                         <?php
                                                         while ($rowN = mysqli_fetch_array($resultNews)) {
                                                             ?>
