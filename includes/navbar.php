@@ -68,7 +68,20 @@ if (!isset($_SESSION)) {
 
                     <li><a href="ViewDocuments.php"><i class="far fa-circle"></i> සියලුම ලිපිගොනු </a></li>
                 </ul>
-            </li>        
+            </li> 
+              <li class="treeview">
+                <a href="">
+                    <i class="fas fa-images"></i>
+                    <span>  අලබම් කළමනාකරණය   </span>
+                    <span class="label label-primary pull-right"></span>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li><a href="AddAlbum.php"><i class="far fa-circle"></i> අලබම් ඇතුලත් කිරීම  </a></li>
+
+                    <li><a href="ViewDocuments.php"><i class="far fa-circle"></i> සියලුම අලබම් </a></li>
+                </ul>
+            </li> 
 
         </ul>
     </section>

@@ -300,7 +300,7 @@ $resultNews = $news->viewNews();
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href='#'>පින්තූර</a></li>
+                                        <li><a href='Album.php'>පින්තූර</a></li>
                                         <li><a href='services.php'>විවිධ සේවා</a>
                                             <ul>
                                                 <li><a href='services.php'>බැංකු සේවා</a>

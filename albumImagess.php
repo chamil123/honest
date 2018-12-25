@@ -2,27 +2,16 @@
 if (!isset($_SESSION)) {
     session_start();
 }
+$album_id=$_GET['album_id'];
 error_reporting(E_ERROR || E_WARNING);
 require_once'./database/connection.php';
-include './Admin/Model/DocumentModel.php';
+include './Admin/Model/AlbumModel.php';
 include './Admin/Model/NewsModel.php';
-
-
+$album = new Album();
 $news = new News();
-$document = new Document();
+
 $resultNews = $news->viewNews();
-
-$reultDoc = $document->viewAllDocuments();
-
-//while ($row = mysqli_fetch_array($reultClass)) {
-//    //if ($row['member_class_id'] == 10) {
-//    echo '' .$row['member_class_id']." - ".$row['member_class_name'] . "<br/>";
-//    // }
-//}
-//var_dump($result);
-//if ($row['member_class_name'] == "ලේකම්") {
-//    echo 'sfsdfsdfsdfsdfsdfsdfs';
-//}
+$resultalbum = $album->getAllAlbumImages($album_id);
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -61,19 +50,13 @@ $reultDoc = $document->viewAllDocuments();
         <!-- Bootstrap  -->
         <!-- Magnific Popup -->
         <link rel="stylesheet" href="css/magnific-popup.css">
-
         <!-- Owl Carousel  -->
         <link rel="stylesheet" href="css/owl.carousel.min.css">
         <link rel="stylesheet" href="css/owl.theme.default.min.css">
-
         <!-- Theme style  -->
         <link rel="stylesheet" href="css/style.css">
         <!-- Modernizr JS -->
         <script src="js/modernizr-2.6.2.min.js"></script>
-        <!-- FOR IE9 below -->
-        <!--[if lt IE 9]>
-        <script src="js/respond.min.js"></script>
-        <![endif]-->
         <script type="text/javascript" src="sliderengine/jquery.hislider.js"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
         <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
@@ -110,6 +93,7 @@ $reultDoc = $document->viewAllDocuments();
                 border-radius: 50%;
                 border: 5px solid #ffffff;
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
             }.searchform div {
                 height: 26px;
                 width: 193px;
@@ -127,6 +111,7 @@ $reultDoc = $document->viewAllDocuments();
                 background: #fff;
                 padding-left: 10px;
             }
+
             .searchsubmit {
                 font-family: 'FontAwesome';
                 width: 29px;
@@ -140,7 +125,146 @@ $reultDoc = $document->viewAllDocuments();
                 border: none;
                 color: #5d3250;
                 cursor: hand; cursor: pointer;
-            }/* Style the Image Used to Trigger the Modal */
+            }#img1 {
+                width:232px;
+                height:170px;
+                object-fit:cover;
+                margin-top: -10px;
+            }
+            .container {
+                position: relative;
+                width: 232px;
+                margin: 5px;
+                margin-top: 10px;
+            }
+            .image {
+                display: block;
+                width: 100%;
+                height: auto;
+
+            }
+            .overlay {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background-color: rgba(76, 175, 80, 0.6);
+                overflow: hidden;
+                width: 100%;
+                height: 0;
+                transition: .4s ease;
+            }
+
+            .container:hover .overlay {
+                height: 100%;
+            }
+
+            .text {
+                color: white;
+                font-size: 20px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                -webkit-transform: translate(-50%, -50%);
+                -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+                text-align: center;
+            }
+
+            .hovereffect {
+                width: 100%;
+                height: 100%;
+                float: left;
+                overflow: hidden;
+                position: relative;
+                text-align: center;
+                cursor: default;
+            }
+
+
+            .hovereffect img {
+                display: block;
+                position: relative;
+                -webkit-transition: -webkit-transform 0.35s;
+                transition: transform 0.35s;
+            }
+
+            .hovereffect:hover img {
+                -webkit-transform: translate3d(0,-10%,0);
+                transform: translate3d(0,-10%,0);
+            }
+
+            .hovereffect h2 {
+                text-transform: uppercase;
+                color: #fff;
+                text-align: center;
+                position: relative;
+                font-size: 17px;
+                padding: 10px;
+                background: rgba(0, 0, 0, 0.6);
+                float: left;
+                margin: 0px;
+                display: inline-block;
+            }
+
+
+
+
+            .hovereffect p.icon-links a {
+                text-align: center;
+                color: #3c4a50;
+                font-size: 1.4em;
+
+            }
+
+            .hovereffect:hover p.icon-links a:hover,
+
+
+            .hovereffect h2,
+            .hovereffect p.icon-links a {
+                -webkit-transition: -webkit-transform 0.35s;
+                transition: transform 0.35s;
+                -webkit-transform: translate3d(0,200%,0);
+                transform: translate3d(0,200%,0);
+                visibility: visible;
+            }
+
+            .hovereffect p.icon-links a span:before {
+                display: inline-block;
+                padding: 8px 10px;
+                speak: none;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+
+
+            .hovereffect:hover .overlay,
+            .hovereffect:hover h2,
+            .hovereffect:hover p.icon-links a {
+                -webkit-transform: translate3d(0,0,0);
+                transform: translate3d(0,0,0);
+            }
+
+            .hovereffect:hover h2 {
+                -webkit-transition-delay: 0.05s;
+                transition-delay: 0.05s;
+            }
+
+            .hovereffect:hover p.icon-links a:nth-child(3) {
+                -webkit-transition-delay: 0.1s;
+                transition-delay: 0.1s;
+            }
+
+            .hovereffect:hover p.icon-links a:nth-child(2) {
+                -webkit-transition-delay: 0.15s;
+                transition-delay: 0.15s;
+            }
+
+            .hovereffect:hover p.icon-links a:first-child {
+                -webkit-transition-delay: 0.2s;
+                transition-delay: 0.2s;
+            }
+            /* Style the Image Used to Trigger the Modal */
             #myImg {
                 border-radius: 5px;
                 cursor: pointer;
@@ -219,43 +343,13 @@ $reultDoc = $document->viewAllDocuments();
                     width: 100%;
                 }
             }
-
         </style> 
-
     </head>
     <body>
-        <script>
-            {
-                $(".class-span").each(function (i) {
-                    var len = $(this).text().trim().length;
-                    if (len > 100)
-                    {
-                        $(this).text($(this).text().substr(0, 100) + '...');
-                    }
-                });
-            }
-            );
-
-
-        </script>
-
-
         <div class="gtco-loader"></div>
         <div id="page">
             <div class="page-inner">
                 <div id="head-top" style="position: absolute; width: 100%; top: 0; ">
-                    <!--                    <div class="gtco-top">
-                                            <div class="gtco-container">
-                                                <div class="row">
-                                                    <div class="col-md-6 col-xs-6">
-                                                        <div id="gtco-logo"><a href="index.html">Honest <em>.</em></a></div>
-                                                    </div>
-                                                    <div class="col-md-6 col-xs-6 social-icons">
-                    
-                                                    </div>
-                                                </div>
-                                            </div>	
-                                        </div>-->
                     <nav class="gtco-nav sticky-banner" role="navigation" style="height: 46px;padding: 0px">
                         <div class="gtco-container">
                             <div style="height: 90px;background-color: #FFF; background: rgba(255,255,255,0.85); ">
@@ -269,7 +363,6 @@ $reultDoc = $document->viewAllDocuments();
                                     <img src="images/Cooperative-logo.gif" width="75px" />
                                 </div>
                                 <div class="col-md-3" style="padding-top: 15px">
-
                                     <img src="images/ta-download.jpg" class="pull-right"/>
                                     <form style="margin-left: -18px;margin-top: -4px" role="search" method="get" id="searchform" class="searchform" action="#" _lpchecked="1">
                                         <div class="searchboxwrapper" >
@@ -300,10 +393,13 @@ $reultDoc = $document->viewAllDocuments();
                                         <li><a href='services.php'>විවිධ සේවා</a>
                                             <ul>
                                                 <li><a href='services.php'>බැංකු සේවා</a>
+
                                                 </li>
                                                 <li><a href='services.php'>පාරිභෝගික සේවා</a>
+
                                                 </li> 
                                                 <li><a href='services.php'>අනෙකුත් සේවා</a>
+
                                                 </li>
                                             </ul>
                                         </li>
@@ -323,208 +419,193 @@ $reultDoc = $document->viewAllDocuments();
                         </div>
                     </nav>
                 </div>
-                <div class="row" style=" height: 30px; " >
-
-                </div>
                 <div class="overflow-hid"  style=";margin-top: -90px"> 
                     <div class="gtco-section">
-                        <div class="gtco-container">
-                            <div class="row" >
-
-                            </div>
-                        </div>
-                    </div>
-                    <div >
-                        <div class="gtco-container">
-                            <p style="padding-bottom: 10px;font-size: 19px;color: blue">භාගතකිරීම</p>
-                            <div class="row" style="margin-top: -20px">
-
-                                <div class="col-md-8 col-sm-3" >
-                                    <div class=" animate-box" data-animate-effect="fadeIn">
-
-                                        <div class="col-md-12">
+                        <div class="gtco-container" style="padding-top: 150px">
 
 
-                                            <div class=row>
-                                                <?php while ($rowD = mysqli_fetch_assoc($reultDoc)) { ?>
-
-                                                    <div class="col-md-4" style="padding-bottom: -20px;" >
-                                                        <div class="thumbnail">
-                                                            <img id="myImg" class="img-thumbnail image-responsive rounded" src="Source Files/Documet/<?php echo $rowD['document_image'] ?>" style=" display:block;
-                                                                 margin:auto;height:250px;marging:0px;padding:0px; ">
-                                                            <div class="caption">
-                                                                <h5 style="padding: 5px"><?= $rowD['document_title'] ?></h5>
-                                                                <?php
-                                                                $doc_path = $rowD['document_file'];
-                                                                $file_name = explode("/", $doc_path);
-                                                                // echo 'sfdf ;'.$aa[3];
-                                                                ?>
-                                                                <p style="margin-top: -20px;"><a href="download.php?nama=<?= $file_name[3] ?>" class="btn btn-info  btn-block" role="button">Download</a> </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <?php
-                                                }
-                                                ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="panel panel-primary animate-box">
-                                        <div class="panel-heading">
-                                            <span class="glyphicon glyphicon-list-alt"></span><b> නැවුම් පුවත් හා සිදුවීම්</b></div>
-
-                                        <div class="panel-body">
-                                            <div class="row">
-                                                <div class="col-xs-12">
-                                                    <ul class="demo1" style="padding: 2px;">
-                                                        <?php
-                                                        while ($rowN = mysqli_fetch_array($resultNews)) {
-                                                            ?>
-
-
-                                                            <li class="news-item">
-                                                                <table cellpadding="2">
-                                                                    <tr>
-                                                                    <!--<p>sasdasdasdasd</p>-->
-
-
-
-                                                                    <div style="float: left;padding-right: 5px;padding-bottom: 5px;">
-                                                                        <img src="honest/Source Files/<?php echo $rowN['image']; ?>" width="150" style="padding-right: 2px"/>
-                                                                    </div>
-                                                                    <div  style="float: none;font-size: 13px;padding-left: 5px;line-height: 1.6;  ">
-                                                                        <p  class="class-span" style="margin-top: -20px;max-width: 75ch;"><?php echo $rowN['news_content']; ?> </p> 
-                                                                    </div>
-
-
-
-
-                                                                    <div style="margin-top: -20px"><a href="#">වැඩිදුර විස්තර...</a></div>
-    <!--                                                                    <td valign="top"><img src="honest/Source Files/<?php echo $rowN['image']; ?>" width="60" style="padding-right: 2px"/></td>
-                                                                        <td style=";font-size: 13px;padding-left: 5px;line-height: 1.6;"><p style="margin-top: -20px"><?php echo $rowN['news_content']; ?> </p> <a href="#">වැඩිදුර විස්තර...</a></td>-->
-
-                                                                    </tr>
-                                                                </table>
-                                                            </li>
-
-                                                            <?php
-                                                        }
-                                                        ?>
-
-                                                    </ul>
+                            <div class="col-md-8 col-sm-3" >
+                                <p style="color: #000099"> පින්තූර ගැලරිය</p>
+                                <div class="row" style="margin-top: -25px;">
+                                    <?php
+                                    while ($rowI = mysqli_fetch_assoc($resultalbum)) {
+                                        ?>
+                                        <div class="col-md-4 " style="height: 178px;padding: 5px">
+                                            <div class="hovereffect container row" style="height: 170px ;padding: 5px">
+                                                <div style="height: 170px">
+                                                    <img id="img1" src="Admin/albums/<?= $rowI['album_images_image'] ?>"  >
+                                                </div>
+                                                <div class="overlay" style="margin: 5px;margin-top: 10px;">
+                                                    <!--<div class="text" style="color: #FFF;font-size: 14px"><a id="myImg" style="color: #ffffff" >පින්තුර  </a></div>-->
+<!--                                                    <p class="icon-links" style="margin-top: 100px;padding-left: 5px;">
+                                                        <a href="#" >
+                                                            <span  style="color: #ffffff;font-size: 12px;margin-left: -35px;">පින්තූර ගණන: <?= $rowA['img_count'] ?></span>
+                                                        </a>
+                                                    </p>-->
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="panel-footer">
+                                        <!--                                        <div class="col-md-3 " style="height: 170px;border: 1px solid">
+                                                                                    <img id="" src="Admin/albums/<?= $rowI['album_images_image'] ?>" style="width: 232px">
+                                                                                </div>-->
 
+                                    <?php }
+                                    ?>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4" style="margin-top:30px">
+                                <div class="panel panel-primary animate-box">
+                                    <div class="panel-heading">
+                                        <span class="glyphicon glyphicon-list-alt"></span><b> නැවුම් පුවත් හා සිදුවීම්</b></div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <ul class="demo1" style="padding: 2px;">
+                                                    <?php
+                                                    while ($rowN = mysqli_fetch_array($resultNews)) {
+                                                        ?>
+                                                        <li class="news-item">
+                                                            <table cellpadding="2">
+                                                                <tr>
+                                                                <!--<p>sasdasdasdasd</p>-->
+                                                                <div style="float: left;padding-right: 5px;padding-bottom: 5px;">
+                                                                    <img src="honest/Source Files/<?php echo $rowN['image']; ?>" width="150" style="padding-right: 2px"/>
+                                                                </div>
+                                                                <div  style="float: none;font-size: 13px;padding-left: 5px;line-height: 1.6;  ">
+                                                                    <p  class="class-span" style="margin-top: -20px;max-width: 75ch;"><?php echo $rowN['news_content']; ?> </p> 
+                                                                </div>
+                                                                <div style="margin-top: -20px"><a href="#">වැඩිදුර විස්තර...</a></div>
+    <!--                                                                    <td valign="top"><img src="honest/Source Files/<?php echo $rowN['image']; ?>" width="60" style="padding-right: 2px"/></td>
+                                                                    <td style=";font-size: 13px;padding-left: 5px;line-height: 1.6;"><p style="margin-top: -20px"><?php echo $rowN['news_content']; ?> </p> <a href="#">වැඩිදුර විස්තර...</a></td>-->       
+                                                                </tr>
+                                                            </table>
+                                                        </li>
+                                                        <?php
+                                                    }
+                                                    ?>
+
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div> 
-                    </div>
-                    <footer id="gtco-footer" role="contentinfo">
-                        <div class="gtco-container">
-                            <div class="row row-p	b-md">
-                                <div class="col-md-4">
-                                    <div class="gtco-widget">
-                                        <h3>ආශ්‍රිත සබැදි</h3>
-                                        <p>සමුපාකාර සංවර්ධන දෙපාර්තුමේන්තුව.</p>
-                                        <p style="margin-top: -25px"><a href="http://www.coopdept.nw.gov.lk/coopdept/">http://www.coopdept.nw.gov.lk/coopdept/</a></p>
-                                        <p>ජාතික සමුපාකාර සංවර්ධන ආයතනය.</p>
-                                        <p style="margin-top: -25px"><a href="http://www.nicd.edu.lk">http://www.nicd.edu.lk</a></p>
-                                        <p>අන්තර් ජාතික සමුපාකාර සන්ධානය (ICA).</p>
-                                        <p style="margin-top: -25px"><a href="http://ica.coop">http://ica.coop</a></p>
+                                    <div class="panel-footer">
+
                                     </div>
-                                </div>
-                                <div class="col-md-4 col-md-push-1">
-                                    <div class="gtco-widget">
-                                        <h3>අපගේ සේවාවන්</h3>
-                                        <ul class="gtco-footer-links">
-                                            <li><a href="#">බැංකු</a></li>
-                                            <li><a href="#">අනෙකුත්</a></li>සමුපාකාර සංවර්ධන දෙපාර්තුමේන්තුව
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-md-push-1">
-                                    <div class="gtco-widget">
-                                        <h3>සම්බන්ද වෙන්න</h3>
-                                        <ul class="gtco-quick-contact">
-                                            <li><a href="#"><i class="icon-phone"></i> 037 22 73091</a></li>
-                                            <li><a href="#"><i class="icon-phone"></i> 037 57 35911</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row copyright">
-                                <div class="col-md-12">
-                                    <p class="pull-left">
-                                        <small class="block">&copy; 2018 . All Rights Reserved.</small> 
-                                        <small class="block">Design and Developing by  <a href="" target="_blank">Induwara concepts</a> </small>
-                                    </p>
-                                    <p class="pull-right">
-                                    <ul class="gtco-social-icons pull-right">
-                                        <li><a href="#"><i class="icon-twitter"></i></a></li>
-                                        <li><a href="#"><i class="icon-facebook"></i></a></li>
-                                        <li><a href="#"><i class="icon-linkedin"></i></a></li>
-                                        <li><a href="#"><i class="icon-dribbble"></i></a></li>
-                                    </ul>
-                                    </p>
                                 </div>
                             </div>
                         </div>
-                    </footer>
+                    </div>
                 </div>
+                <div id="gtco-features">
+                    <div class="gtco-container">
+                    </div>
+                </div> 
             </div>
+            <footer id="gtco-footer" role="contentinfo">
+                <div class="gtco-container">
+                    <div class="row row-p	b-md">
+
+                        <div class="col-md-4">
+                            <div class="gtco-widget">
+                                <h3>ආශ්‍රිත සබැදි</h3>
+                                <p>සමුපාකාර සංවර්ධන දෙපාර්තුමේන්තුව.</p>
+                                <p style="margin-top: -25px"><a href="http://www.coopdept.nw.gov.lk/coopdept/">http://www.coopdept.nw.gov.lk/coopdept/</a></p>
+                                <p>ජාතික සමුපාකාර සංවර්ධන ආයතනය.</p>
+                                <p style="margin-top: -25px"><a href="http://www.nicd.edu.lk">http://www.nicd.edu.lk</a></p>
+                                <p>අන්තර් ජාතික සමුපාකාර සන්ධානය (ICA).</p>
+                                <p style="margin-top: -25px"><a href="http://ica.coop">http://ica.coop</a></p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-md-push-1">
+                            <div class="gtco-widget">
+                                <h3>අපගේ සේවාවන්</h3>
+                                <ul class="gtco-footer-links">
+                                    <li><a href="#">බැංකු</a></li>
+                                    <li><a href="#">අනෙකුත්</a></li>සමුපාකාර සංවර්ධන දෙපාර්තුමේන්තුව
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-md-push-1">
+                            <div class="gtco-widget">
+                                <h3>සම්බන්ද වෙන්න</h3>
+                                <ul class="gtco-quick-contact">
+                                    <li><a href="#"><i class="icon-phone"></i> 037 22 73091</a></li>
+                                    <li><a href="#"><i class="icon-phone"></i> 037 57 35911</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row copyright">
+                        <div class="col-md-12">
+                            <p class="pull-left">
+                                <small class="block">&copy; 2018 . All Rights Reserved.</small> 
+                                <small class="block">Design and Developing by  <a href="" target="_blank">Induwara concepts</a> </small>
+                            </p>
+                            <p class="pull-right">
+                            <ul class="gtco-social-icons pull-right">
+                                <li><a href="#"><i class="icon-twitter"></i></a></li>
+                                <li><a href="#"><i class="icon-facebook"></i></a></li>
+                                <li><a href="#"><i class="icon-linkedin"></i></a></li>
+                                <li><a href="#"><i class="icon-dribbble"></i></a></li>
+                            </ul>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </footer>
         </div>
 
-
-        <div class="gototop js-top">
-            <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-        </div>
-
-        <div id="myModal" class="modal" >
+    </div>
+    <div class="gototop js-top">
+        <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+    </div>
+       <div id="myModal" class="modal" >
             <span class="close">&times;</span>
             <img class="modal-content" id="img01" style="width: 300px;margin-top: 100px">
             <div id="caption"></div>
         </div>
-        <!-- jQuery -->
-        <!-- jQuery Easing -->
-        <script src="js/jquery.easing.1.3.js"></script>
-        <!-- Bootstrap -->
-        <!-- Waypoints -->
-        <script src="js/jquery.waypoints.min.js"></script>
-        <script src="js/sticky.js"></script>
-        <!-- Carousel -->
-        <script src="js/owl.carousel.min.js"></script>
-        <!-- countTo -->
-        <script src="js/jquery.countTo.js"></script>
-        <!-- Stellar Parallax -->
-        <script src="js/jquery.stellar.min.js"></script>
-        <!-- Magnific Popup -->
-        <script src="js/jquery.magnific-popup.min.js"></script>
-        <script src="js/magnific-popup-options.js"></script>
-        <!-- Main -->
-        <script src="js/main.js"></script>
-        <script type="text/javascript">
-            $(function () {
-                $(".demo1").bootstrapNews({
-                    newsPerPage: 2,
-                    autoplay: true,
-                    pauseOnHover: true,
-                    direction: 'up',
-                    newsTickerInterval: 4000,
-                    onToDo: function () {
-                        //console.log(this);
-                    }
-                });
-            });
+    <!-- jQuery Easing -->
+    <script src="js/jquery.easing.1.3.js"></script>
+    <!-- Bootstrap -->
+    <!-- Waypoints -->
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/sticky.js"></script>
+    <!-- Carousel -->
+    <script src="js/owl.carousel.min.js"></script>
+    <!-- countTo -->
+    <script src="js/jquery.countTo.js"></script>
 
-        </script>
-        <script>
+    <!-- Stellar Parallax -->
+    <script src="js/jquery.stellar.min.js"></script>
+
+    <!-- Magnific Popup -->
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/magnific-popup-options.js"></script>
+
+    <!-- Main -->
+    <script src="js/main.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".demo1").bootstrapNews({
+                newsPerPage: 3,
+                autoplay: true,
+                pauseOnHover: true,
+                direction: 'up',
+                newsTickerInterval: 4000,
+                onToDo: function () {
+                    //console.log(this);
+                }
+            });
+        });
+        
+    </script>
+          <script>
 // Get the modal
             var modal = document.getElementById('myModal');
 
@@ -546,10 +627,6 @@ $reultDoc = $document->viewAllDocuments();
                 modal.style.display = "none";
             }
         </script>
-
-
-
-
-    </body>
+</body>
 </html>
 

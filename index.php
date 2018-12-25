@@ -203,7 +203,7 @@ $resultNews = $news->viewNews();
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href='#'>පින්තූර</a></li>
+                                        <li><a href='Album.php'>පින්තූර</a></li>
                                         <li><a href='services.php'>විවිධ සේවා</a>
                                             <ul>
                                                 <li><a href='services.php'>බැංකු සේවා</a>
@@ -373,6 +373,8 @@ $resultNews = $news->viewNews();
                                                     <ul class="demo1" style="padding: 2px;">
                                                         <?php
                                                         while ($rowN = mysqli_fetch_array($resultNews)) {
+                                                            
+                                                            
                                                             ?>
                                                             <li class="news-item">
                                                                 <table cellpadding="2">
@@ -382,11 +384,11 @@ $resultNews = $news->viewNews();
                                                                         <img src="honest/Source Files/<?php echo $rowN['image']; ?>" width="150" style="padding-right: 2px"/>
                                                                     </div>
                                                                     <div  style="float: none;font-size: 13px;padding-left: 5px;line-height: 1.6;  ">
-                                                                        <p  class="class-span" style="margin-top: -20px;max-width: 75ch;"><?php echo $rowN['news_content']; ?> </p> 
+                                                                        <p  class="class-span" style="margin-top: -20px;"><?php echo mb_strimwidth($rowN['news_content'],0,250,"...."); ?><a href="">වැඩිදුර විස්තර</a> </p> 
                                                                     </div>
-                                                                    <div style="margin-top: -20px"><a href="#">වැඩිදුර විස්තර...</a></div>
+                                                                    <!--<div style="margin-top: 20px"><a href="#">වැඩිදුර විස්තර...</a></div>-->
     <!--                                                                    <td valign="top"><img src="honest/Source Files/<?php echo $rowN['image']; ?>" width="60" style="padding-right: 2px"/></td>
-                                                                        <td style=";font-size: 13px;padding-left: 5px;line-height: 1.6;"><p style="margin-top: -20px"><?php echo $rowN['news_content']; ?> </p> <a href="#">වැඩිදුර විස්තර...</a></td>-->       
+                                                                        <td style=";font-size: 13px;padding-left: 5px;line-height: 1.6;"><p style="margin-top: -20px"><?php echo mb_strimwidth($rowN['news_content'],0,200,"...."); ?> </p> <a href="#">වැඩිදුර විස්තර...</a></td>-->       
                                                                     </tr>
                                                                 </table>
                                                             </li>
